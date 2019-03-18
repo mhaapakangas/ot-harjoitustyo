@@ -6,7 +6,9 @@ Harjoitustyö kurssille Ohjelmistotekniikka.
 
 **Viikko 1**
 
-*Tähän lisätään viikon 1 tehtävät*
+[gitlog.txt](/laskarit/viikko1/gitlog.txt)
+
+[komentorivi.txt](/laskarit/viikko1/komentorivi.txt)
 
 **Viikko 2**
 
