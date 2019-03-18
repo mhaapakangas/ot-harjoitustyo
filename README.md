@@ -12,4 +12,4 @@ Harjoitustyö kurssille Ohjelmistotekniikka.
 
 **Viikko 2**
 
-*Tähän lisätään viikon 2 tehtävät*
+*Tähän lisätään **viikon 2** tehtävät*
