@@ -1,6 +1,12 @@
 # Ot-harjoitustyö
-Harjoitustyö kurssille Ohjelmistotekniikka.
+## Tetris-peli
+Tetris on geometrinen ongelmanratkaisupeli, jossa pelaaja asettelee erimuotoisia, putovia palikoita ruudukossa.
+Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
+### Dokumentaatio
+[Vaatimusmäärittely](/documentation/requirements.md)
+
+[Työaikakirjanpito](/documentation/tuntikirjanpito.md)
 
 ## Harjoitukset
 
@@ -12,7 +18,11 @@ Harjoitustyö kurssille Ohjelmistotekniikka.
 
 **Viikko 2**
 
-*Tähän lisätään **viikon 2** tehtävät*
+[Maksukortti](/laskarit/viikko2/Maksukortti)
+
+[Unicafe](/laskarit/viikko2/Unicafe)
+
+[testikattavuus](/laskarit/viikko2/test_coverage.png)
 
 **Viikko 3**
 
