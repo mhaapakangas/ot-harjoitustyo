@@ -1,5 +1,6 @@
 package controllers;
 
+import lombok.Getter;
 import models.Position;
 import models.Shape;
 
@@ -8,21 +9,36 @@ import static models.Constants.GRID_WIDTH;
 
 public class GameService {
     private Shape currentShape;
+    @Getter
     private boolean[][] grid = new boolean[GRID_WIDTH][GRID_HEIGHT];
+    private long lastUpdate;
 
     public GameService() {
-        this.currentShape = new Shape(new Position(150, 0));
+        currentShape = new Shape(new Position(150, 0));
+        lastUpdate = System.currentTimeMillis();
+    }
+
+    public void update() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastUpdate > 250) {
+            if (!currentShape.canFall()) {
+                grid[currentShape.getPosition().getGridPosX()][currentShape.getPosition().getGridPosY()] = true;
+                currentShape = new Shape(new Position(150, 0));
+            }
+            currentShape.moveDown();
+            lastUpdate = currentTime;
+        }
     }
 
     public void moveShapeLeft() {
-        this.currentShape.moveLeft();
+        currentShape.moveLeft();
     }
 
     public void moveShapeRight() {
-        this.currentShape.moveRight();
+        currentShape.moveRight();
     }
 
     public Position getShapePosition() {
-        return this.currentShape.getPosition();
+        return currentShape.getPosition();
     }
 }
