@@ -20,4 +20,12 @@ public class Position {
     public int getGridPosY() {
         return posY / BLOCK_SIZE;
     }
+
+    public void setGridPosX(int gridPosX) {
+        posX = gridPosX * BLOCK_SIZE;
+    }
+
+    public void setGridPosY(int gridPosY) {
+        posY = gridPosY * BLOCK_SIZE;
+    }
 }

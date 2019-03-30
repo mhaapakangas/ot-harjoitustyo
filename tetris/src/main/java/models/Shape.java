@@ -3,7 +3,6 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static models.Constants.BLOCK_SIZE;
 import static models.Constants.GRID_HEIGHT;
 import static models.Constants.GRID_WIDTH;
 
@@ -12,25 +11,32 @@ import static models.Constants.GRID_WIDTH;
 public class Shape {
     private Position position;
 
-    public void moveLeft() {
-        if (position.getPosX() != 0) {
-            position.setPosX(position.getPosX() - BLOCK_SIZE);
+    public void moveLeft(boolean[][] grid) {
+        if (position.getGridPosX() != 0 &&
+                !grid[position.getGridPosX() - 1][position.getGridPosY()]) {
+            position.setGridPosX(position.getGridPosX() - 1);
         }
     }
 
-    public void moveRight() {
-        if (position.getPosX() != (GRID_WIDTH - 1) * BLOCK_SIZE) {
-            position.setPosX(position.getPosX() + BLOCK_SIZE);
+    public void moveRight(boolean[][] grid) {
+        if (position.getGridPosX() != GRID_WIDTH - 1  &&
+                !grid[position.getGridPosX() + 1][position.getGridPosY()]) {
+            position.setGridPosX(position.getGridPosX() + 1);
         }
     }
 
-    public void moveDown() {
-        if (canFall()) {
-            position.setPosY(position.getPosY() + BLOCK_SIZE);
+    public void moveDown(boolean[][] grid) {
+        if (canFall(grid)) {
+            position.setGridPosY(position.getGridPosY() + 1);
         }
     }
 
-    public boolean canFall() {
-        return position.getPosY() != (GRID_HEIGHT - 1) * BLOCK_SIZE;
+    public boolean canFall(boolean[][] grid) {
+        if (position.getGridPosY() == GRID_HEIGHT - 1) {
+            return false;
+        }
+
+        boolean isColliding = grid[position.getGridPosX()][position.getGridPosY() + 1];
+        return !isColliding;
     }
 }

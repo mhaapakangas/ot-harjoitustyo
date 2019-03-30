@@ -21,21 +21,21 @@ public class GameService {
     public void update() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastUpdate > 250) {
-            if (!currentShape.canFall()) {
+            currentShape.moveDown(grid);
+            lastUpdate = currentTime;
+            if (!currentShape.canFall(grid)) {
                 grid[currentShape.getPosition().getGridPosX()][currentShape.getPosition().getGridPosY()] = true;
                 currentShape = new Shape(new Position(150, 0));
             }
-            currentShape.moveDown();
-            lastUpdate = currentTime;
         }
     }
 
     public void moveShapeLeft() {
-        currentShape.moveLeft();
+        currentShape.moveLeft(grid);
     }
 
     public void moveShapeRight() {
-        currentShape.moveRight();
+        currentShape.moveRight(grid);
     }
 
     public Position getShapePosition() {
