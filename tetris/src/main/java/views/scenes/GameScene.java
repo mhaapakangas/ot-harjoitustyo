@@ -12,12 +12,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import models.Position;
 
+import static models.Constants.BLOCK_SIZE;
+import static models.Constants.GRID_HEIGHT;
+import static models.Constants.GRID_WIDTH;
+
 public class GameScene {
     private Scene scene;
 
     public GameScene() {
         final GameService service = new GameService();
-        Canvas canvas = new Canvas(300, 500);
+        Canvas canvas = new Canvas(GRID_WIDTH * BLOCK_SIZE, GRID_HEIGHT * BLOCK_SIZE);
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -28,7 +32,7 @@ public class GameScene {
                 Position shape = service.getShapePosition();
                 context.setFill(Color.DEEPPINK);
                 context.fillRect(shape.getPosX(), shape.getPosY(),
-                        20, 20);
+                        BLOCK_SIZE, BLOCK_SIZE);
             }
         };
 

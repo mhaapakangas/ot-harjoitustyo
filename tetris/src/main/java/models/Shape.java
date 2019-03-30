@@ -3,16 +3,23 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import static models.Constants.BLOCK_SIZE;
+import static models.Constants.GRID_WIDTH;
+
 @Getter
 @AllArgsConstructor
 public class Shape {
     private Position position;
 
     public void moveLeft() {
-        position.setPosX(position.getPosX() - 20);
+        if (position.getPosX() != 0) {
+            position.setPosX(position.getPosX() - BLOCK_SIZE);
+        }
     }
 
     public void moveRight() {
-        position.setPosX(position.getPosX() + 20);
+        if (position.getPosX() != (GRID_WIDTH - 1) * BLOCK_SIZE) {
+            position.setPosX(position.getPosX() + BLOCK_SIZE);
+        }
     }
 }
