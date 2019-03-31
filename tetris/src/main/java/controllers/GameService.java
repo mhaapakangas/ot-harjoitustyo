@@ -1,6 +1,7 @@
 package controllers;
 
 import lombok.Getter;
+import models.OShape;
 import models.Position;
 import models.Shape;
 
@@ -10,11 +11,11 @@ import static models.Constants.GRID_WIDTH;
 public class GameService {
     private Shape currentShape;
     @Getter
-    private boolean[][] grid = new boolean[GRID_WIDTH][GRID_HEIGHT];
+    private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
     private long lastUpdate;
 
     public GameService() {
-        currentShape = new Shape(new Position(150, 0));
+        currentShape = new OShape(new Position(150, 0));
         lastUpdate = System.currentTimeMillis();
     }
 
@@ -23,9 +24,17 @@ public class GameService {
         if (currentTime - lastUpdate > 250) {
             currentShape.moveDown(grid);
             lastUpdate = currentTime;
-            if (!currentShape.canFall(grid)) {
-                grid[currentShape.getPosition().getGridPosX()][currentShape.getPosition().getGridPosY()] = true;
-                currentShape = new Shape(new Position(150, 0));
+            if (!currentShape.canMoveDown(grid)) {
+                int[][] shapeOrientation = currentShape.getOrientation();
+                Position shapePosition = currentShape.getPosition();
+                for (int i = 0; i < shapeOrientation.length; i++) {
+                    for (int j = 0; j < shapeOrientation[0].length; j++) {
+                        if (shapeOrientation[i][j] != 0) {
+                            grid[shapePosition.getGridPosX() + i][shapePosition.getGridPosY() + j] = 1;
+                        }
+                    }
+                }
+                currentShape = new OShape(new Position(150, 0));
             }
         }
     }
@@ -40,5 +49,9 @@ public class GameService {
 
     public Position getShapePosition() {
         return currentShape.getPosition();
+    }
+
+    public int[][] getShapeOrientation() {
+        return currentShape.getOrientation();
     }
 }

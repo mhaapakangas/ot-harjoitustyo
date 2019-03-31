@@ -31,16 +31,24 @@ public class GameScene {
                 context.setFill(Color.DARKSLATEGRAY);
                 context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-                Position shape = service.getShapePosition();
+                Position shapePosition = service.getShapePosition();
                 context.setFill(Color.DEEPPINK);
-                context.fillRect(shape.getPosX(), shape.getPosY(),
-                        BLOCK_SIZE, BLOCK_SIZE);
+                int[][] shapeOrientation = service.getShapeOrientation();
+                for (int i = 0; i < shapeOrientation.length; i++) {
+                    for (int j = 0; j < shapeOrientation[0].length; j++) {
+                        if (shapeOrientation[i][j] != 0) {
+                            context.fillRect((shapePosition.getGridPosX() + i) * BLOCK_SIZE,
+                                    (shapePosition.getGridPosY() + j)  * BLOCK_SIZE,
+                                    BLOCK_SIZE, BLOCK_SIZE);
+                        }
+                    }
+                }
 
                 context.setFill(Color.DARKMAGENTA);
-                boolean[][] grid = service.getGrid();
+                int[][] grid = service.getGrid();
                 for (int i = 0; i < GRID_WIDTH; i++) {
                     for (int j = 0; j < GRID_HEIGHT; j++) {
-                        if (grid[i][j]) {
+                        if (grid[i][j] != 0) {
                             context.fillRect(i * BLOCK_SIZE, j * BLOCK_SIZE,
                                     BLOCK_SIZE, BLOCK_SIZE);
                         }

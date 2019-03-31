@@ -1,42 +1,61 @@
 package models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import static models.Constants.BLOCK_SIZE;
 import static models.Constants.GRID_HEIGHT;
 import static models.Constants.GRID_WIDTH;
 
 @Getter
-@AllArgsConstructor
-public class Shape {
-    private Position position;
+public abstract class Shape {
+    protected Position position;
+    protected int[][] orientation;
 
-    public void moveLeft(boolean[][] grid) {
-        if (position.getGridPosX() != 0 &&
-                !grid[position.getGridPosX() - 1][position.getGridPosY()]) {
-            position.setGridPosX(position.getGridPosX() - 1);
+    public void moveLeft(int[][] grid) {
+        Position newPosition = new Position(position.getPosX() - BLOCK_SIZE, position.getPosY());
+        if (isNotColliding(grid, newPosition, orientation)) {
+            position = newPosition;
         }
     }
 
-    public void moveRight(boolean[][] grid) {
-        if (position.getGridPosX() != GRID_WIDTH - 1  &&
-                !grid[position.getGridPosX() + 1][position.getGridPosY()]) {
-            position.setGridPosX(position.getGridPosX() + 1);
+    public void moveRight(int[][] grid) {
+        Position newPosition = new Position(position.getPosX() + BLOCK_SIZE, position.getPosY());
+        if (isNotColliding(grid, newPosition, orientation)) {
+            position = newPosition;
         }
     }
 
-    public void moveDown(boolean[][] grid) {
-        if (canFall(grid)) {
-            position.setGridPosY(position.getGridPosY() + 1);
+    public void moveDown(int[][] grid) {
+        Position newPosition = new Position(position.getPosX(), position.getPosY() + BLOCK_SIZE);
+        if (isNotColliding(grid, newPosition, orientation)) {
+            position = newPosition;
         }
     }
 
-    public boolean canFall(boolean[][] grid) {
-        if (position.getGridPosY() == GRID_HEIGHT - 1) {
-            return false;
-        }
+    public boolean canMoveDown(int[][] grid) {
+        Position newPosition = new Position(position.getPosX(), position.getPosY() + BLOCK_SIZE);
+        return isNotColliding(grid, newPosition, orientation);
+    }
 
-        boolean isColliding = grid[position.getGridPosX()][position.getGridPosY() + 1];
-        return !isColliding;
+    private boolean isNotColliding(int[][] grid, Position newPosition, int[][] newOrientation) {
+        for (int i = 0; i < newOrientation.length; i++) {
+            for (int j = 0; j < newOrientation[0].length; j++) {
+                if (newOrientation[i][j] != 0) {
+                    if (newPosition.getGridPosX() + i < 0) {
+                        return false;
+                    }
+                    if (newPosition.getGridPosX() + i >= GRID_WIDTH) {
+                        return false;
+                    }
+                    if (newPosition.getGridPosY() + j >= GRID_HEIGHT) {
+                        return false;
+                    }
+                    if (grid[newPosition.getGridPosX() + i][newPosition.getGridPosY() + j] != 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
