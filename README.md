@@ -8,22 +8,19 @@ Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 [Työaikakirjanpito](/documentation/tuntikirjanpito.md)
 
-## Harjoitukset
+### Suorittaminen
+Ohjelman voi suorittaa komentoriviltä komennolla:
+```
+mvn compile exec:java -Dexec.mainClass=tetris.views.MenuView
+```
 
-**Viikko 1**
+### Testaus
+Ohjelman voi testit voi ajaa komennolla:
+```
+mvn test
+```
 
-[gitlog.txt](/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](/laskarit/viikko1/komentorivi.txt)
-
-**Viikko 2**
-
-[Maksukortti](/laskarit/viikko2/Maksukortti)
-
-[Unicafe](/laskarit/viikko2/Unicafe)
-
-[testikattavuus](/laskarit/viikko2/test_coverage.png)
-
-**Viikko 3**
-
-*Tähän lisätään **viikon 3** tehtävät*
+Testikattavuusraportin voi generoida komennolla:
+```
+mvn test jacoco:report
+```
