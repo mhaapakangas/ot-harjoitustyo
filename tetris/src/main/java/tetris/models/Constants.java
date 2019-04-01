@@ -1,4 +1,4 @@
-package models;
+package tetris.models;
 
 public class Constants {
     public static final int BLOCK_SIZE = 30;

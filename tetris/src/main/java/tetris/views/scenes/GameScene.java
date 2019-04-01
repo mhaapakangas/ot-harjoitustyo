@@ -1,6 +1,6 @@
-package views.scenes;
+package tetris.views.scenes;
 
-import controllers.GameService;
+import tetris.controllers.GameService;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -10,11 +10,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import models.Position;
+import tetris.models.Position;
 
-import static models.Constants.BLOCK_SIZE;
-import static models.Constants.GRID_HEIGHT;
-import static models.Constants.GRID_WIDTH;
+import static tetris.models.Constants.BLOCK_SIZE;
+import static tetris.models.Constants.GRID_HEIGHT;
+import static tetris.models.Constants.GRID_WIDTH;
 
 public class GameScene {
     private Scene scene;

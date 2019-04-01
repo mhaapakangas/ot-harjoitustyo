@@ -1,11 +1,11 @@
-package models;
+package tetris.models;
 
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static models.Constants.GRID_HEIGHT;
-import static models.Constants.GRID_WIDTH;
+import static tetris.models.Constants.GRID_HEIGHT;
+import static tetris.models.Constants.GRID_WIDTH;
 import static org.junit.Assert.assertEquals;
 
 

@@ -1,4 +1,4 @@
-package views.scenes;
+package tetris.views.scenes;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

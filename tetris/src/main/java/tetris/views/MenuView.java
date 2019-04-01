@@ -1,8 +1,8 @@
-package views;
+package tetris.views;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import views.scenes.MenuScene;
+import tetris.views.scenes.MenuScene;
 
 public class MenuView extends Application {
     public static void main(String[] args) {

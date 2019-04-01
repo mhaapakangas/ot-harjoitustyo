@@ -1,9 +1,9 @@
-package models;
+package tetris.models;
 
 import lombok.Getter;
 
-import static models.Constants.GRID_HEIGHT;
-import static models.Constants.GRID_WIDTH;
+import static tetris.models.Constants.GRID_HEIGHT;
+import static tetris.models.Constants.GRID_WIDTH;
 
 @Getter
 public abstract class Shape {

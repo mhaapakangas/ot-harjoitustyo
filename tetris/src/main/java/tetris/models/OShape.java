@@ -1,4 +1,4 @@
-package models;
+package tetris.models;
 
 public class OShape extends Shape {
     public OShape(Position position) {

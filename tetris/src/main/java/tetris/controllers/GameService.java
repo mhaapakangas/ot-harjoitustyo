@@ -1,12 +1,12 @@
-package controllers;
+package tetris.controllers;
 
 import lombok.Getter;
-import models.OShape;
-import models.Position;
-import models.Shape;
+import tetris.models.OShape;
+import tetris.models.Position;
+import tetris.models.Shape;
 
-import static models.Constants.GRID_HEIGHT;
-import static models.Constants.GRID_WIDTH;
+import static tetris.models.Constants.GRID_HEIGHT;
+import static tetris.models.Constants.GRID_WIDTH;
 
 public class GameService {
     private Shape currentShape;

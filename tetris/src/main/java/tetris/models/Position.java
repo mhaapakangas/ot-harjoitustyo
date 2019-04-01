@@ -1,4 +1,4 @@
-package models;
+package tetris.models;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
