@@ -15,7 +15,7 @@ public class GameService {
     private long lastUpdate;
 
     public GameService() {
-        currentShape = new OShape(new Position(150, 0));
+        currentShape = new OShape(new Position(5, 0));
         lastUpdate = System.currentTimeMillis();
     }
 
@@ -30,11 +30,11 @@ public class GameService {
                 for (int i = 0; i < shapeOrientation.length; i++) {
                     for (int j = 0; j < shapeOrientation[0].length; j++) {
                         if (shapeOrientation[i][j] != 0) {
-                            grid[shapePosition.getGridPosX() + i][shapePosition.getGridPosY() + j] = 1;
+                            grid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
                         }
                     }
                 }
-                currentShape = new OShape(new Position(150, 0));
+                currentShape = new OShape(new Position(5, 0));
             }
         }
     }

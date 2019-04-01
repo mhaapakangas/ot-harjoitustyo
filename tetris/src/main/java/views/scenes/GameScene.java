@@ -37,8 +37,8 @@ public class GameScene {
                 for (int i = 0; i < shapeOrientation.length; i++) {
                     for (int j = 0; j < shapeOrientation[0].length; j++) {
                         if (shapeOrientation[i][j] != 0) {
-                            context.fillRect((shapePosition.getGridPosX() + i) * BLOCK_SIZE,
-                                    (shapePosition.getGridPosY() + j)  * BLOCK_SIZE,
+                            context.fillRect((shapePosition.getPosX() + i) * BLOCK_SIZE,
+                                    (shapePosition.getPosY() + j)  * BLOCK_SIZE,
                                     BLOCK_SIZE, BLOCK_SIZE);
                         }
                     }
