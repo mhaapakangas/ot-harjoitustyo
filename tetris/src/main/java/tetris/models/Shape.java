@@ -52,21 +52,30 @@ public abstract class Shape {
         for (int i = 0; i < newOrientation.length; i++) {
             for (int j = 0; j < newOrientation[0].length; j++) {
                 if (newOrientation[j][i] != 0) {
-                    if (newPosition.getPosX() + i < 0) {
+                    if (isOutsideScreen(newPosition, i, j)) {
                         return false;
                     }
-                    if (newPosition.getPosX() + i >= GRID_WIDTH) {
-                        return false;
-                    }
-                    if (newPosition.getPosY() + j >= GRID_HEIGHT) {
-                        return false;
-                    }
-                    if (grid[newPosition.getPosX() + i][newPosition.getPosY() + j] != 0) {
+
+                    if (isCollidingWithGrid(grid, newPosition, i, j)) {
                         return false;
                     }
                 }
             }
         }
         return true;
+    }
+
+    private boolean isOutsideScreen(Position position, int x, int y) {
+        if (position.getPosX() + x < 0) {
+            return true;
+        }
+        if (position.getPosX() + x >= GRID_WIDTH) {
+            return true;
+        }
+        return position.getPosY() + y >= GRID_HEIGHT;
+    }
+
+    private boolean isCollidingWithGrid(int[][] grid, Position position, int x, int y) {
+        return grid[position.getPosX() + x][position.getPosY() + y] != 0;
     }
 }

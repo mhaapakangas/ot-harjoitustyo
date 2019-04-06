@@ -11,7 +11,7 @@ public class MenuScene {
 
     public MenuScene(Stage stage) {
         Button startGameButton = new Button("New game");
-        startGameButton.setOnAction(e->{
+        startGameButton.setOnAction(e -> {
             stage.setScene(new GameScene().getScene());
         });
 
