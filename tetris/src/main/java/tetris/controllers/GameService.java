@@ -25,16 +25,20 @@ public class GameService {
             currentShape.moveDown(grid);
             lastUpdate = currentTime;
             if (!currentShape.canMoveDown(grid)) {
-                int[][] shapeOrientation = currentShape.getOrientations()[currentShape.getOrientation()];
-                Position shapePosition = currentShape.getPosition();
-                for (int i = 0; i < shapeOrientation.length; i++) {
-                    for (int j = 0; j < shapeOrientation[0].length; j++) {
-                        if (shapeOrientation[j][i] != 0) {
-                            grid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
-                        }
-                    }
-                }
+                addShapeToGrid();
                 currentShape = new TShape(new Position(5, 0));
+            }
+        }
+    }
+
+    private void addShapeToGrid() {
+        int[][] shapeOrientation = currentShape.getOrientation();
+        Position shapePosition = currentShape.getPosition();
+        for (int i = 0; i < shapeOrientation.length; i++) {
+            for (int j = 0; j < shapeOrientation[0].length; j++) {
+                if (shapeOrientation[j][i] != 0) {
+                    grid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
+                }
             }
         }
     }
@@ -56,6 +60,6 @@ public class GameService {
     }
 
     public int[][] getShapeOrientation() {
-        return currentShape.getOrientations()[currentShape.getOrientation()];
+        return currentShape.getOrientation();
     }
 }

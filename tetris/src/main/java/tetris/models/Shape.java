@@ -5,42 +5,46 @@ import lombok.Getter;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
-@Getter
 public abstract class Shape {
+    @Getter
     protected Position position;
-    protected int orientation = 0;
-    protected int[][][] orientations;
+    private int rotationIndex = 0;
+    protected int[][][] rotations;
+
+    public int[][] getOrientation() {
+        return rotations[rotationIndex];
+    }
 
     public void moveLeft(int[][] grid) {
         Position newPosition = new Position(position.getPosX() - 1, position.getPosY());
-        if (isNotColliding(grid, newPosition, orientations[orientation])) {
+        if (isNotColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public void moveRight(int[][] grid) {
         Position newPosition = new Position(position.getPosX() + 1, position.getPosY());
-        if (isNotColliding(grid, newPosition, orientations[orientation])) {
+        if (isNotColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public void moveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        if (isNotColliding(grid, newPosition, orientations[orientation])) {
+        if (isNotColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public boolean canMoveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        return isNotColliding(grid, newPosition, orientations[orientation]);
+        return isNotColliding(grid, newPosition, getOrientation());
     }
 
     public void rotate(int[][] grid) {
-        int newOrientation = (orientation + 1) % 4;
-        if (isNotColliding(grid, position, orientations[newOrientation])) {
-            orientation = newOrientation;
+        int newRotationIndex = (rotationIndex + 1) % 4;
+        if (isNotColliding(grid, position, rotations[newRotationIndex])) {
+            rotationIndex = newRotationIndex;
         }
     }
 
