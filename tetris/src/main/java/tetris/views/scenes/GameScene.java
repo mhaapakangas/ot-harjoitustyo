@@ -36,7 +36,7 @@ public class GameScene {
                 int[][] shapeOrientation = service.getShapeOrientation();
                 for (int i = 0; i < shapeOrientation.length; i++) {
                     for (int j = 0; j < shapeOrientation[0].length; j++) {
-                        if (shapeOrientation[i][j] != 0) {
+                        if (shapeOrientation[j][i] != 0) {
                             context.fillRect((shapePosition.getPosX() + i) * BLOCK_SIZE,
                                     (shapePosition.getPosY() + j)  * BLOCK_SIZE,
                                     BLOCK_SIZE, BLOCK_SIZE);
@@ -66,6 +66,8 @@ public class GameScene {
                             service.moveShapeLeft();
                         } else if (event.getCode() == KeyCode.RIGHT) {
                             service.moveShapeRight();
+                        } else if (event.getCode() == KeyCode.UP) {
+                            service.rotateShape();
                         }
                     }
                 });
