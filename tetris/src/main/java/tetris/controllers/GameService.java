@@ -26,6 +26,7 @@ public class GameService {
             lastUpdate = currentTime;
             if (!currentShape.canMoveDown(grid)) {
                 addShapeToGrid();
+                clearFullRows();
                 currentShape = new TShape(new Position(5, 0));
             }
         }
@@ -40,6 +41,30 @@ public class GameService {
                     grid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
                 }
             }
+        }
+    }
+
+    private void clearFullRows() {
+        rows:
+        for (int i = 0; i < GRID_HEIGHT; i++) {
+            for (int j = 0; j < GRID_WIDTH; j++) {
+                if (grid[j][i] == 0) {
+                    continue rows;
+                }
+            }
+            clearRow(i);
+        }
+    }
+
+    private void clearRow(int rowIndex) {
+        for (int i = rowIndex; i > 0; i--) {
+            for (int j = 0; j < GRID_WIDTH; j++) {
+                grid[j][i] = grid[j][i - 1];
+            }
+        }
+
+        for (int j = 0; j < GRID_WIDTH; j++) {
+            grid[j][0] = 0;
         }
     }
 
