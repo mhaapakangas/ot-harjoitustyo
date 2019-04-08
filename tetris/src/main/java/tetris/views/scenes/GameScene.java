@@ -8,7 +8,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import tetris.controllers.GameService;
-import tetris.models.Position;
 
 import static tetris.models.Constants.*;
 
@@ -26,7 +25,6 @@ public class GameScene {
 
                 GraphicsContext context = canvas.getGraphicsContext2D();
                 drawBackground(context, canvas);
-                drawCurrentShape(context);
                 drawGrid(context);
             }
         };
@@ -60,25 +58,9 @@ public class GameScene {
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    private void drawCurrentShape(GraphicsContext context) {
-        context.setFill(Color.DEEPPINK);
-        Position shapePosition = service.getShapePosition();
-        int[][] shapeOrientation = service.getShapeOrientation();
-
-        for (int i = 0; i < shapeOrientation.length; i++) {
-            for (int j = 0; j < shapeOrientation[0].length; j++) {
-                if (shapeOrientation[j][i] != 0) {
-                    context.fillRect((shapePosition.getPosX() + i) * BLOCK_SIZE,
-                        (shapePosition.getPosY() + j)  * BLOCK_SIZE,
-                        BLOCK_SIZE, BLOCK_SIZE);
-                }
-            }
-        }
-    }
-
     private void drawGrid(GraphicsContext context) {
         context.setFill(Color.DARKMAGENTA);
-        int[][] grid = service.getGrid();
+        int[][] grid = service.getRenderGrid();
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (grid[i][j] != 0) {

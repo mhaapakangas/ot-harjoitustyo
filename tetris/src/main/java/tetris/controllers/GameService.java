@@ -1,90 +1,46 @@
 package tetris.controllers;
 
-import lombok.Getter;
 import tetris.models.Position;
 import tetris.models.Shape;
 import tetris.models.TShape;
 
-import static tetris.models.Constants.GRID_HEIGHT;
-import static tetris.models.Constants.GRID_WIDTH;
-
 public class GameService {
     private Shape currentShape;
-    @Getter
-    private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
     private long lastUpdate;
+    private GridService gridService;
 
     public GameService() {
         currentShape = new TShape(new Position(5, 0));
         lastUpdate = System.currentTimeMillis();
+        gridService = new GridService();
     }
 
     public void update() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastUpdate > 250) {
-            currentShape.moveDown(grid);
+            currentShape.moveDown(gridService.getGrid());
             lastUpdate = currentTime;
-            if (!currentShape.canMoveDown(grid)) {
-                addShapeToGrid();
-                clearFullRows();
+            if (!currentShape.canMoveDown(gridService.getGrid())) {
+                gridService.addShapeToGrid(currentShape);
+                gridService.clearFullRows();
                 currentShape = new TShape(new Position(5, 0));
             }
         }
     }
 
-    private void addShapeToGrid() {
-        int[][] shapeOrientation = currentShape.getOrientation();
-        Position shapePosition = currentShape.getPosition();
-        for (int i = 0; i < shapeOrientation.length; i++) {
-            for (int j = 0; j < shapeOrientation[0].length; j++) {
-                if (shapeOrientation[j][i] != 0) {
-                    grid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
-                }
-            }
-        }
-    }
-
-    private void clearFullRows() {
-        rows:
-        for (int i = 0; i < GRID_HEIGHT; i++) {
-            for (int j = 0; j < GRID_WIDTH; j++) {
-                if (grid[j][i] == 0) {
-                    continue rows;
-                }
-            }
-            clearRow(i);
-        }
-    }
-
-    private void clearRow(int rowIndex) {
-        for (int i = rowIndex; i > 0; i--) {
-            for (int j = 0; j < GRID_WIDTH; j++) {
-                grid[j][i] = grid[j][i - 1];
-            }
-        }
-
-        for (int j = 0; j < GRID_WIDTH; j++) {
-            grid[j][0] = 0;
-        }
-    }
-
     public void moveShapeLeft() {
-        currentShape.moveLeft(grid);
+        currentShape.moveLeft(gridService.getGrid());
     }
 
     public void moveShapeRight() {
-        currentShape.moveRight(grid);
+        currentShape.moveRight(gridService.getGrid());
     }
 
     public void rotateShape() {
-        currentShape.rotate(grid);
+        currentShape.rotate(gridService.getGrid());
     }
 
-    public Position getShapePosition() {
-        return currentShape.getPosition();
-    }
-
-    public int[][] getShapeOrientation() {
-        return currentShape.getOrientation();
+    public int[][] getRenderGrid() {
+        return gridService.getRenderGrid(currentShape);
     }
 }
