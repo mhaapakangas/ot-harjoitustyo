@@ -8,6 +8,8 @@ import static tetris.models.Constants.GRID_WIDTH;
 public abstract class Shape {
     @Getter
     protected Position position;
+    @Getter
+    protected BlockColor color;
     private int rotationIndex = 0;
     protected int[][][] rotations;
 

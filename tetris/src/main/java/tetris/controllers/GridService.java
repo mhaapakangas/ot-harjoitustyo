@@ -30,7 +30,8 @@ public class GridService {
         for (int i = 0; i < shapeOrientation.length; i++) {
             for (int j = 0; j < shapeOrientation[0].length; j++) {
                 if (shapeOrientation[j][i] != 0) {
-                    targetGrid[shapePosition.getPosX() + i][shapePosition.getPosY() + j] = 1;
+                    targetGrid[shapePosition.getPosX() + i][shapePosition.getPosY() + j]
+                        = currentShape.getColor().ordinal();
                 }
             }
         }

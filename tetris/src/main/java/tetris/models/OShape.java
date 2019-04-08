@@ -3,6 +3,8 @@ package tetris.models;
 public class OShape extends Shape {
     public OShape(Position position) {
         this.position = position;
+        this.color = BlockColor.PINK;
+
         this.rotations = new int[4][][];
         this.rotations[0] = new int[][]{
             {1, 1},

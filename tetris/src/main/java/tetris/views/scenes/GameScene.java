@@ -8,15 +8,24 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import tetris.controllers.GameService;
+import tetris.models.BlockColor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static tetris.models.Constants.*;
 
 public class GameScene {
     private Scene scene;
     private GameService service;
+    private Map<Integer, Color> colorMapping;
 
     public GameScene() {
         service = new GameService();
+        colorMapping = new HashMap<>();
+        colorMapping.put(BlockColor.PINK.ordinal(), Color.HOTPINK);
+        colorMapping.put(BlockColor.BLUE.ordinal(), Color.CORNFLOWERBLUE);
+
         Canvas canvas = new Canvas(GRID_WIDTH * BLOCK_SIZE, GRID_HEIGHT * BLOCK_SIZE);
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -59,11 +68,11 @@ public class GameScene {
     }
 
     private void drawGrid(GraphicsContext context) {
-        context.setFill(Color.DARKMAGENTA);
         int[][] grid = service.getRenderGrid();
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (grid[i][j] != 0) {
+                    context.setFill(colorMapping.getOrDefault(grid[i][j], Color.GRAY));
                     context.fillRect(i * BLOCK_SIZE, j * BLOCK_SIZE,
                         BLOCK_SIZE, BLOCK_SIZE);
                 }

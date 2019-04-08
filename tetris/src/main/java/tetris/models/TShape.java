@@ -3,6 +3,8 @@ package tetris.models;
 public class TShape extends Shape {
     public TShape(Position position) {
         this.position = position;
+        this.color = BlockColor.BLUE;
+
         this.rotations = new int[4][][];
         this.rotations[0] = new int[][]{
             {0, 1, 0},
