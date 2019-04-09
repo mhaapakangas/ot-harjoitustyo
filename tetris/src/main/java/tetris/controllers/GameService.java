@@ -1,8 +1,8 @@
 package tetris.controllers;
 
 import tetris.models.Position;
-import tetris.models.Shape;
-import tetris.models.TShape;
+import tetris.models.shapes.Shape;
+import tetris.models.shapes.TShape;
 
 public class GameService {
     private Shape currentShape;

@@ -1,12 +1,13 @@
-package tetris.models;
+package tetris.models.shapes;
 
 
 import org.junit.Before;
 import org.junit.Test;
+import tetris.models.Position;
 
+import static org.junit.Assert.assertEquals;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
-import static org.junit.Assert.assertEquals;
 
 
 public class OShapeTest {

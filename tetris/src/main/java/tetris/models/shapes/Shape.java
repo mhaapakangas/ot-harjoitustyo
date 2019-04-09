@@ -1,6 +1,8 @@
-package tetris.models;
+package tetris.models.shapes;
 
 import lombok.Getter;
+import tetris.models.BlockColor;
+import tetris.models.Position;
 
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;

@@ -2,7 +2,7 @@ package tetris.controllers;
 
 import lombok.Getter;
 import tetris.models.Position;
-import tetris.models.Shape;
+import tetris.models.shapes.Shape;
 
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;

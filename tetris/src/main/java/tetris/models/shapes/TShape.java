@@ -1,4 +1,7 @@
-package tetris.models;
+package tetris.models.shapes;
+
+import tetris.models.BlockColor;
+import tetris.models.Position;
 
 public class TShape extends Shape {
     public TShape(Position position) {
