@@ -1,8 +1,13 @@
 package tetris.controllers;
 
 import tetris.models.Position;
+import tetris.models.shapes.OShape;
 import tetris.models.shapes.Shape;
 import tetris.models.shapes.TShape;
+
+import java.util.Random;
+
+import static tetris.models.Constants.SHAPE_COUNT;
 
 public class GameService {
     private Shape currentShape;
@@ -10,7 +15,7 @@ public class GameService {
     private GridService gridService;
 
     public GameService() {
-        currentShape = new TShape(new Position(5, 0));
+        currentShape = createShape();
         lastUpdate = System.currentTimeMillis();
         gridService = new GridService();
     }
@@ -23,8 +28,18 @@ public class GameService {
             if (!currentShape.canMoveDown(gridService.getGrid())) {
                 gridService.addShapeToGrid(currentShape);
                 gridService.clearFullRows();
-                currentShape = new TShape(new Position(5, 0));
+                currentShape = createShape();
             }
+        }
+    }
+
+    private Shape createShape() {
+        Random random = new Random();
+        switch (random.nextInt(SHAPE_COUNT)) {
+            case 0:
+                return new TShape(new Position(5, 0));
+            default:
+                return new OShape(new Position(5, 0));
         }
     }
 
