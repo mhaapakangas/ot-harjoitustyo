@@ -9,4 +9,5 @@
 | 1.4. | 1  | Yksikkötestausta |
 | 6.4. | 2 | Logiikka palikan pyörittämiselle sekä refaktorointia |
 | 8.4. | 2 | Logiikka valmiin rivin poistamiselle ja erivärisille palikoille. |
-| Yht.  | 12.5  |  |
+| 9.4. | 2 | Luokka- ja pakkauskaavio ja yksikkötestausta |
+| Yht.  | 14.5  |  |
