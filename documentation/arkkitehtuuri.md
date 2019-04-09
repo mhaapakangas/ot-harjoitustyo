@@ -1,0 +1,1 @@
+![Arkkitehtuurikuvaus](images/PackageDiagram.jpg)
