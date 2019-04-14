@@ -1,5 +1,6 @@
 package tetris.controllers;
 
+import lombok.Getter;
 import tetris.models.Position;
 import tetris.models.shapes.OShape;
 import tetris.models.shapes.Shape;
@@ -14,6 +15,8 @@ public class GameService {
     private long lastUpdate;
     private GridService gridService;
     private boolean gameOver = false;
+    @Getter
+    private int score = 0;
 
     public GameService() {
         currentShape = createShape();
@@ -28,7 +31,9 @@ public class GameService {
             lastUpdate = currentTime;
             if (!currentShape.canMoveDown(gridService.getGrid())) {
                 gridService.addShapeToGrid(currentShape);
-                gridService.clearFullRows();
+                int clearedRows = gridService.clearFullRows();
+                score += clearedRows * 100;
+
                 currentShape = createShape();
                 if (currentShape.isColliding(gridService.getGrid())) {
                     gameOver = true;

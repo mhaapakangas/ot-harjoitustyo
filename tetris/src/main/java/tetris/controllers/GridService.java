@@ -37,7 +37,8 @@ public class GridService {
         }
     }
 
-    public void clearFullRows() {
+    public int clearFullRows() {
+        int clearedRows = 0;
         rows:
         for (int i = 0; i < GRID_HEIGHT; i++) {
             for (int j = 0; j < GRID_WIDTH; j++) {
@@ -46,7 +47,10 @@ public class GridService {
                 }
             }
             clearRow(i);
+            clearedRows++;
         }
+
+        return clearedRows;
     }
 
     private void clearRow(int rowIndex) {
