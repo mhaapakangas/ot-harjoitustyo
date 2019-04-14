@@ -13,6 +13,7 @@ public class GameService {
     private Shape currentShape;
     private long lastUpdate;
     private GridService gridService;
+    private boolean gameOver = false;
 
     public GameService() {
         currentShape = createShape();
@@ -22,13 +23,16 @@ public class GameService {
 
     public void update() {
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastUpdate > 250) {
+        if (!gameOver && currentTime - lastUpdate > 250) {
             currentShape.moveDown(gridService.getGrid());
             lastUpdate = currentTime;
             if (!currentShape.canMoveDown(gridService.getGrid())) {
                 gridService.addShapeToGrid(currentShape);
                 gridService.clearFullRows();
                 currentShape = createShape();
+                if (currentShape.isColliding(gridService.getGrid())) {
+                    gameOver = true;
+                }
             }
         }
     }

@@ -21,52 +21,56 @@ public abstract class Shape {
 
     public void moveLeft(int[][] grid) {
         Position newPosition = new Position(position.getPosX() - 1, position.getPosY());
-        if (isNotColliding(grid, newPosition, getOrientation())) {
+        if (!isColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public void moveRight(int[][] grid) {
         Position newPosition = new Position(position.getPosX() + 1, position.getPosY());
-        if (isNotColliding(grid, newPosition, getOrientation())) {
+        if (!isColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public void moveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        if (isNotColliding(grid, newPosition, getOrientation())) {
+        if (!isColliding(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
     public boolean canMoveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        return isNotColliding(grid, newPosition, getOrientation());
+        return !isColliding(grid, newPosition, getOrientation());
+    }
+
+    public boolean isColliding(int[][] grid) {
+        return isColliding(grid, position, getOrientation());
     }
 
     public void rotate(int[][] grid) {
         int newRotationIndex = (rotationIndex + 1) % 4;
-        if (isNotColliding(grid, position, rotations[newRotationIndex])) {
+        if (!isColliding(grid, position, rotations[newRotationIndex])) {
             rotationIndex = newRotationIndex;
         }
     }
 
-    private boolean isNotColliding(int[][] grid, Position newPosition, int[][] newOrientation) {
-        for (int i = 0; i < newOrientation.length; i++) {
-            for (int j = 0; j < newOrientation[0].length; j++) {
-                if (newOrientation[j][i] != 0) {
-                    if (isOutsideScreen(newPosition, i, j)) {
-                        return false;
+    private boolean isColliding(int[][] grid, Position position, int[][] orientation) {
+        for (int i = 0; i < orientation.length; i++) {
+            for (int j = 0; j < orientation[0].length; j++) {
+                if (orientation[j][i] != 0) {
+                    if (isOutsideScreen(position, i, j)) {
+                        return true;
                     }
 
-                    if (isCollidingWithGrid(grid, newPosition, i, j)) {
-                        return false;
+                    if (isCollidingWithGrid(grid, position, i, j)) {
+                        return true;
                     }
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private boolean isOutsideScreen(Position position, int x, int y) {
