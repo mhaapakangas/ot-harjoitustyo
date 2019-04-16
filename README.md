@@ -3,13 +3,17 @@
 Tetris on geometrinen ongelmanratkaisupeli, jossa pelaaja asettelee erimuotoisia, putovia palikoita ruudukossa.
 Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
-### Dokumentaatio
+## Dokumentaatio
 [Vaatimusmäärittely](/documentation/requirements.md)
 
 [Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
 
 [Työaikakirjanpito](/documentation/tuntikirjanpito.md)
 
+## Releaset
+[Viikko 5](https://github.com/mhaapakangas/ot-harjoitustyo/releases/tag/viikko5)
+
+## Komentorivitoiminnot
 ### Ohjelman suorittaminen
 Ohjelman voi suorittaa komentoriviltä komennolla:
 ```
