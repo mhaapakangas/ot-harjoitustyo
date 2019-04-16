@@ -10,10 +10,21 @@ Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 [Työaikakirjanpito](/documentation/tuntikirjanpito.md)
 
-### Suorittaminen
+### Ohjelman suorittaminen
 Ohjelman voi suorittaa komentoriviltä komennolla:
 ```
 mvn compile exec:java -Dexec.mainClass=tetris.views.MenuView
+```
+
+### Jar-tiedoston luominen
+Ohjelmasta voi luoda jar-tiedoston target-hakemistoon komennolla: 
+```
+mvn package
+```
+
+Ohjelman voi suorittaa komennolla:
+```
+java -jar target/Tetris-1.0-SNAPSHOT.jar
 ```
 
 ### Testaus
