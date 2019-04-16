@@ -38,7 +38,7 @@ public class ScoreDaoImpl implements ScoreDao {
             ResultSet rs;
 
             rs = stmt.executeQuery("SELECT * FROM SCORE ORDER BY SCORE DESC LIMIT 10");
-            while ( rs.next() ) {
+            while (rs.next()) {
                 String username = rs.getString("USERNAME");
                 int score = rs.getInt("SCORE");
                 scores.add(new Score(score, username));
