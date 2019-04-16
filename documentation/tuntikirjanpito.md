@@ -10,4 +10,8 @@
 | 6.4. | 2 | Logiikka palikan pyörittämiselle sekä refaktorointia |
 | 8.4. | 2 | Logiikka valmiin rivin poistamiselle ja erivärisille palikoille. |
 | 9.4. | 2.5 | Luokka- ja pakkauskaavio, palikoiden satunnaistaminen ja yksikkötestausta |
-| Yht.  | 15  |  |
+| 14.4. | 1 | Logiikka pisteiden laskuun ja pelin päättymiseen |
+| 15.4. | 4 | Tietokannan lisääminen, pisteiden tallennus |
+| 16.4. | 2 | Riippuvuusinjektioiden lisääminen, puuttuvat palikat ja yksikkötestausta|
+| 16.4. | 1 | Sekvenssikaavio ja dokumentaation päivitys |
+| Yht.  | 23  |  |
