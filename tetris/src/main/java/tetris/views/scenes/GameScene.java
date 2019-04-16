@@ -42,6 +42,11 @@ public class GameScene {
         colorMapping = new HashMap<>();
         colorMapping.put(BlockColor.PINK.ordinal(), Color.HOTPINK);
         colorMapping.put(BlockColor.BLUE.ordinal(), Color.CORNFLOWERBLUE);
+        colorMapping.put(BlockColor.GREEN.ordinal(), Color.MEDIUMSPRINGGREEN);
+        colorMapping.put(BlockColor.PURPLE.ordinal(), Color.MEDIUMPURPLE);
+        colorMapping.put(BlockColor.YELLOW.ordinal(), Color.YELLOW);
+        colorMapping.put(BlockColor.ORANGE.ordinal(), Color.DARKORANGE);
+        colorMapping.put(BlockColor.TURQUOISE.ordinal(), Color.MEDIUMTURQUOISE);
 
         Canvas canvas = new Canvas(GRID_WIDTH * BLOCK_SIZE, SCORE_HEIGHT + GRID_HEIGHT * BLOCK_SIZE);
         AnimationTimer timer = new AnimationTimer() {

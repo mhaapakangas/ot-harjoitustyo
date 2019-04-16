@@ -3,5 +3,10 @@ package tetris.models;
 public enum BlockColor {
     NONE,
     PINK,
-    BLUE
+    BLUE,
+    GREEN,
+    PURPLE,
+    YELLOW,
+    ORANGE,
+    TURQUOISE
 }

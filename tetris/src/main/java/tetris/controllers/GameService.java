@@ -4,9 +4,7 @@ import com.google.inject.Inject;
 import lombok.Getter;
 
 import tetris.models.Position;
-import tetris.models.shapes.OShape;
-import tetris.models.shapes.Shape;
-import tetris.models.shapes.TShape;
+import tetris.models.shapes.*;
 
 import java.util.Random;
 
@@ -51,6 +49,16 @@ public class GameService {
         switch (random.nextInt(SHAPE_COUNT)) {
             case 0:
                 return new TShape(new Position(5, 0));
+            case 1:
+                return new LShape(new Position(5, 0));
+            case 2:
+                return new SShape(new Position(5, 0));
+            case 3:
+                return new ZShape(new Position(5, 0));
+            case 4:
+                return new JShape(new Position(5, 0));
+            case 5:
+                return new IShape(new Position(5, 0));
             default:
                 return new OShape(new Position(5, 0));
         }
