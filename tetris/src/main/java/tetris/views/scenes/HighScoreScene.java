@@ -1,12 +1,12 @@
 package tetris.views.scenes;
 
+import com.google.inject.Inject;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import tetris.controllers.ScoreService;
 import tetris.models.Score;
 
@@ -14,13 +14,12 @@ import java.util.List;
 
 public class HighScoreScene {
     private Scene scene;
-    private ScoreService scoreService;
 
-    public HighScoreScene(Stage stage) {
-        scoreService = new ScoreService();
+    @Inject
+    public HighScoreScene(ScoreService scoreService, SceneManager sceneManager) {
         Button backToMenuButton = new Button("Back to Menu");
         backToMenuButton.setOnAction(e -> {
-            stage.setScene(new MenuScene(stage).getScene());
+            sceneManager.setScene(AppScene.MENU_SCENE);
         });
 
         TableView table = new TableView();

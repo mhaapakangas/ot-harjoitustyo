@@ -1,23 +1,24 @@
 package tetris.views.scenes;
 
+import com.google.inject.Inject;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class MenuScene {
     private Scene scene;
 
-    public MenuScene(Stage stage) {
+    @Inject
+    public MenuScene(SceneManager sceneManager) {
         Button startGameButton = new Button("New game");
         startGameButton.setOnAction(e -> {
-            stage.setScene(new GameScene(stage).getScene());
+            sceneManager.setScene(AppScene.GAME_SCENE);
         });
 
         Button highScoresButton = new Button("High scores");
         highScoresButton.setOnAction(e -> {
-            stage.setScene(new HighScoreScene(stage).getScene());
+            sceneManager.setScene(AppScene.HIGH_SCORE_SCENE);
         });
 
         VBox layout = new VBox(startGameButton, highScoresButton);

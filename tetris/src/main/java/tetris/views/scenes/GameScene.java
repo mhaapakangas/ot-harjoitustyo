@@ -1,5 +1,6 @@
 package tetris.views.scenes;
 
+import com.google.inject.Inject;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -12,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import tetris.controllers.GameService;
 import tetris.controllers.ScoreService;
 import tetris.models.BlockColor;
@@ -24,16 +24,19 @@ import static tetris.models.Constants.*;
 
 public class GameScene {
     private Scene scene;
-    private GameService service;
+    private GameService gameService;
     private ScoreService scoreService;
+    private SceneManager sceneManager;
     private Map<Integer, Color> colorMapping;
     private static final int SCORE_HEIGHT = 40;
     private static final int GAME_OVER_WIDTH = 200;
     private static final int GAME_OVER_HEIGHT = 160;
 
-    public GameScene(Stage stage) {
-        service = new GameService();
-        scoreService = new ScoreService();
+    @Inject
+    public GameScene(SceneManager sceneManager, ScoreService scoreService, GameService gameService) {
+        this.gameService = gameService;
+        this.scoreService = scoreService;
+        this.sceneManager = sceneManager;
 
         Group root = new Group();
         colorMapping = new HashMap<>();
@@ -44,15 +47,15 @@ public class GameScene {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                service.update();
+                gameService.update();
 
                 GraphicsContext context = canvas.getGraphicsContext2D();
                 drawBackground(context, canvas);
-                drawScore(context, canvas, service.getScore());
+                drawScore(context, canvas, gameService.getScore());
                 drawGrid(context);
 
-                if (service.isGameOver()) {
-                    drawGameOver(context, canvas, stage, root);
+                if (gameService.isGameOver()) {
+                    drawGameOver(context, canvas, root);
                     this.stop();
                 }
             }
@@ -64,13 +67,13 @@ public class GameScene {
             event -> {
                 switch (event.getCode()) {
                     case LEFT:
-                        service.moveShapeLeft();
+                        gameService.moveShapeLeft();
                         break;
                     case RIGHT:
-                        service.moveShapeRight();
+                        gameService.moveShapeRight();
                         break;
                     case UP:
-                        service.rotateShape();
+                        gameService.rotateShape();
                         break;
                 }
             });
@@ -102,7 +105,7 @@ public class GameScene {
     }
 
     private void drawGrid(GraphicsContext context) {
-        int[][] grid = service.getRenderGrid();
+        int[][] grid = gameService.getRenderGrid();
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (grid[i][j] != 0) {
@@ -114,7 +117,7 @@ public class GameScene {
         }
     }
 
-    private void drawGameOver(GraphicsContext context, Canvas canvas, Stage stage, Group root) {
+    private void drawGameOver(GraphicsContext context, Canvas canvas, Group root) {
         context.setFill(Color.BLACK);
         context.fillRect(50, 200, GAME_OVER_WIDTH, GAME_OVER_HEIGHT);
         context.setFill(Color.RED);
@@ -142,8 +145,8 @@ public class GameScene {
         saveScore.setLayoutX(108);
         saveScore.setLayoutY(315);
         saveScore.setOnAction(e -> {
-            scoreService.saveScore(service.getScore(), usernameField.getText());
-            stage.setScene(new MenuScene(stage).getScene());
+            scoreService.saveScore(gameService.getScore(), usernameField.getText());
+            sceneManager.setScene(AppScene.MENU_SCENE);
         });
 
         root.getChildren().addAll(usernameField, saveScore);

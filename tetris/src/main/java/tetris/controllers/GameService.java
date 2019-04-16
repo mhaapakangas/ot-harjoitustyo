@@ -1,9 +1,9 @@
 package tetris.controllers;
 
+import com.google.inject.Inject;
 import lombok.Getter;
 
 import tetris.models.Position;
-import tetris.models.Score;
 import tetris.models.shapes.OShape;
 import tetris.models.shapes.Shape;
 import tetris.models.shapes.TShape;
@@ -21,10 +21,11 @@ public class GameService {
     @Getter
     private int score = 0;
 
-    public GameService() {
+    @Inject
+    public GameService(GridService gridService) {
         currentShape = createShape();
         lastUpdate = System.currentTimeMillis();
-        gridService = new GridService();
+        this.gridService = gridService;
     }
 
     public void update() {
