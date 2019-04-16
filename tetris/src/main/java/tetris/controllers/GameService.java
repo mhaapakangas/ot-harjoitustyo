@@ -1,7 +1,9 @@
 package tetris.controllers;
 
 import lombok.Getter;
+
 import tetris.models.Position;
+import tetris.models.Score;
 import tetris.models.shapes.OShape;
 import tetris.models.shapes.Shape;
 import tetris.models.shapes.TShape;
@@ -14,6 +16,7 @@ public class GameService {
     private Shape currentShape;
     private long lastUpdate;
     private GridService gridService;
+    @Getter
     private boolean gameOver = false;
     @Getter
     private int score = 0;

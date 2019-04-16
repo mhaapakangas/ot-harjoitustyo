@@ -6,10 +6,15 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import tetris.controllers.GameService;
+import tetris.controllers.ScoreService;
 import tetris.models.BlockColor;
 
 import java.util.HashMap;
@@ -20,11 +25,17 @@ import static tetris.models.Constants.*;
 public class GameScene {
     private Scene scene;
     private GameService service;
+    private ScoreService scoreService;
     private Map<Integer, Color> colorMapping;
     private static final int SCORE_HEIGHT = 40;
+    private static final int GAME_OVER_WIDTH = 200;
+    private static final int GAME_OVER_HEIGHT = 160;
 
-    public GameScene() {
+    public GameScene(Stage stage) {
         service = new GameService();
+        scoreService = new ScoreService();
+
+        Group root = new Group();
         colorMapping = new HashMap<>();
         colorMapping.put(BlockColor.PINK.ordinal(), Color.HOTPINK);
         colorMapping.put(BlockColor.BLUE.ordinal(), Color.CORNFLOWERBLUE);
@@ -39,6 +50,11 @@ public class GameScene {
                 drawBackground(context, canvas);
                 drawScore(context, canvas, service.getScore());
                 drawGrid(context);
+
+                if (service.isGameOver()) {
+                    drawGameOver(context, canvas, stage, root);
+                    this.stop();
+                }
             }
         };
 
@@ -59,8 +75,8 @@ public class GameScene {
                 }
             });
 
-        Group root = new Group();
-        root.getChildren().add(canvas);
+
+        root.getChildren().addAll(canvas);
 
         timer.start();
         this.scene = new Scene(root);
@@ -77,6 +93,7 @@ public class GameScene {
         context.setFill(Color.WHITE);
         context.setTextAlign(TextAlignment.CENTER);
         context.setTextBaseline(VPos.CENTER);
+        context.setFont(new Font(20));
         context.fillText(
             "Current score: " + score,
             Math.round(canvas.getWidth() / 2),
@@ -95,6 +112,41 @@ public class GameScene {
                 }
             }
         }
+    }
+
+    private void drawGameOver(GraphicsContext context, Canvas canvas, Stage stage, Group root) {
+        context.setFill(Color.BLACK);
+        context.fillRect(50, 200, GAME_OVER_WIDTH, GAME_OVER_HEIGHT);
+        context.setFill(Color.RED);
+        context.setTextAlign(TextAlignment.CENTER);
+        context.setTextBaseline(VPos.CENTER);
+        context.setFont(new Font(28));
+        context.fillText(
+            "Game over",
+            Math.round(canvas.getWidth() / 2),
+            Math.round(218)
+        );
+        context.setFill(Color.WHITE);
+        context.setTextAlign(TextAlignment.CENTER);
+        context.setTextBaseline(VPos.CENTER);
+        context.setFont(new Font(16));
+        context.fillText(
+            "Enter your name:",
+            Math.round(canvas.getWidth() / 2),
+            Math.round(255)
+        );
+        TextField usernameField = new TextField();
+        usernameField.setLayoutX(65);
+        usernameField.setLayoutY(275);
+        Button saveScore = new Button("Save score");
+        saveScore.setLayoutX(108);
+        saveScore.setLayoutY(315);
+        saveScore.setOnAction(e -> {
+            scoreService.saveScore(service.getScore(), usernameField.getText());
+            stage.setScene(new MenuScene(stage).getScene());
+        });
+
+        root.getChildren().addAll(usernameField, saveScore);
     }
 
     public Scene getScene() {

@@ -12,11 +12,13 @@ public class MenuScene {
     public MenuScene(Stage stage) {
         Button startGameButton = new Button("New game");
         startGameButton.setOnAction(e -> {
-            stage.setScene(new GameScene().getScene());
+            stage.setScene(new GameScene(stage).getScene());
         });
 
         Button highScoresButton = new Button("High scores");
-        highScoresButton.setDisable(true);
+        highScoresButton.setOnAction(e -> {
+            stage.setScene(new HighScoreScene(stage).getScene());
+        });
 
         VBox layout = new VBox(startGameButton, highScoresButton);
         layout.setSpacing(10);
