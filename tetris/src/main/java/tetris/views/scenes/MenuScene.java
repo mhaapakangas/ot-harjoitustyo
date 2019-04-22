@@ -5,8 +5,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 public class MenuScene {
+    @Getter
     private Scene scene;
 
     @Inject
@@ -26,9 +28,5 @@ public class MenuScene {
         layout.setAlignment(Pos.CENTER);
 
         this.scene = new Scene(layout, 300, 250);
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }

@@ -13,21 +13,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import lombok.Getter;
 import tetris.controllers.GameService;
 import tetris.controllers.ScoreService;
-import tetris.models.BlockColor;
-
-import java.util.HashMap;
-import java.util.Map;
+import tetris.views.ColorConverter;
 
 import static tetris.models.Constants.*;
 
 public class GameScene {
+    @Getter
     private Scene scene;
     private GameService gameService;
     private ScoreService scoreService;
     private SceneManager sceneManager;
-    private Map<Integer, Color> colorMapping;
     private static final int SCORE_HEIGHT = 40;
     private static final int GAME_OVER_WIDTH = 200;
     private static final int GAME_OVER_HEIGHT = 160;
@@ -39,14 +37,6 @@ public class GameScene {
         this.sceneManager = sceneManager;
 
         Group root = new Group();
-        colorMapping = new HashMap<>();
-        colorMapping.put(BlockColor.PINK.ordinal(), Color.HOTPINK);
-        colorMapping.put(BlockColor.BLUE.ordinal(), Color.CORNFLOWERBLUE);
-        colorMapping.put(BlockColor.GREEN.ordinal(), Color.MEDIUMSPRINGGREEN);
-        colorMapping.put(BlockColor.PURPLE.ordinal(), Color.MEDIUMPURPLE);
-        colorMapping.put(BlockColor.YELLOW.ordinal(), Color.YELLOW);
-        colorMapping.put(BlockColor.ORANGE.ordinal(), Color.DARKORANGE);
-        colorMapping.put(BlockColor.TURQUOISE.ordinal(), Color.MEDIUMTURQUOISE);
 
         Canvas canvas = new Canvas(GRID_WIDTH * BLOCK_SIZE, SCORE_HEIGHT + GRID_HEIGHT * BLOCK_SIZE);
         AnimationTimer timer = new AnimationTimer() {
@@ -114,7 +104,7 @@ public class GameScene {
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (grid[i][j] != 0) {
-                    context.setFill(colorMapping.getOrDefault(grid[i][j], Color.GRAY));
+                    context.setFill(ColorConverter.convert(grid[i][j]));
                     context.fillRect(i * BLOCK_SIZE, SCORE_HEIGHT + j * BLOCK_SIZE,
                         BLOCK_SIZE, BLOCK_SIZE);
                 }
@@ -155,9 +145,5 @@ public class GameScene {
         });
 
         root.getChildren().addAll(usernameField, saveScore);
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }

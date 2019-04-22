@@ -7,12 +7,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 import tetris.controllers.ScoreService;
 import tetris.models.Score;
 
 import java.util.List;
 
 public class HighScoreScene {
+    @Getter
     private Scene scene;
 
     @Inject
@@ -36,9 +38,5 @@ public class HighScoreScene {
         root.getChildren().addAll(backToMenuButton, table);
 
         this.scene = new Scene(root);
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }
