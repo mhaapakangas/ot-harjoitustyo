@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import tetris.models.Position;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
@@ -101,5 +103,19 @@ public class OShapeTest {
 
         Position expected = new Position(8, 18);
         assertEquals(expected, shape.getPosition());
+    }
+
+    @Test
+    public void isCollidingReturnsFalseWhenNoCollision() {
+        shape = new OShape(new Position(5, 4));
+        grid[6][6] = 1;
+        assertFalse(shape.isColliding(grid));
+    }
+
+    @Test
+    public void isCollidingReturnsTrueWhenColliding() {
+        shape = new OShape(new Position(5, 4));
+        grid[6][4] = 1;
+        assertTrue(shape.isColliding(grid));
     }
 }

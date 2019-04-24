@@ -4,8 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import tetris.models.Position;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
@@ -91,6 +93,20 @@ public class JShapeTest {
 
         Position expected = new Position(5, 4);
         assertEquals(expected, shape.getPosition());
+    }
+
+    @Test
+    public void canMoveDownReturnsTrueWhenNotBlocked() {
+        shape = new JShape(new Position(5, 4));
+        assertTrue(shape.canMoveDown(grid));
+    }
+
+    @Test
+    public void canMoveDownReturnsFalseWhenBlocked() {
+        shape = new JShape(new Position(5, 4));
+        grid[7][6] = 1;
+
+        assertFalse(shape.canMoveDown(grid));
     }
 
     @Test

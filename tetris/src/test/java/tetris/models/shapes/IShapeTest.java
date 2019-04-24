@@ -132,4 +132,14 @@ public class IShapeTest {
         shape.rotate(grid);
         assertArrayEquals(shape.rotations[0], shape.getOrientation());
     }
+
+    @Test
+    public void shapeCannotRotateOutsideScreen() {
+        shape = new IShape(new Position(4, -1));
+
+        assertArrayEquals(shape.rotations[0], shape.getOrientation());
+
+        shape.rotate(grid);
+        assertArrayEquals(shape.rotations[0], shape.getOrientation());
+    }
 }
