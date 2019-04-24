@@ -46,7 +46,29 @@ public class GameService {
     private void clearFullRows() {
         gridService.addShapeToGrid(currentShape);
         int clearedRows = gridService.clearFullRows();
-        score += clearedRows * 100;
+        increaseScore(clearedRows);
+    }
+
+    private void increaseScore(int clearedRows) {
+        int points;
+        switch (clearedRows) {
+            case 1:
+                points = 40;
+                break;
+            case 2:
+                points = 100;
+                break;
+            case 3:
+                points = 300;
+                break;
+            case 4:
+                points = 1200;
+                break;
+            default:
+                points = 0;
+        }
+
+        score += points;
     }
 
     private Shape spawnNewShape() {
