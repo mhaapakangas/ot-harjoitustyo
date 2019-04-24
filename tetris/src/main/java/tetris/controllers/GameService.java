@@ -8,6 +8,7 @@ import tetris.models.shapes.*;
 
 import java.util.Random;
 
+import static tetris.models.Constants.ROWS_PER_LEVEL;
 import static tetris.models.Constants.SHAPE_COUNT;
 
 public class GameService {
@@ -18,6 +19,9 @@ public class GameService {
     private boolean gameOver = false;
     @Getter
     private int score = 0;
+    @Getter
+    private int level = 0;
+    private int linesClearedAtCurrentLevel = 0;
 
     @Inject
     public GameService(GridService gridService) {
@@ -28,11 +32,14 @@ public class GameService {
 
     public void update() {
         long currentTime = System.currentTimeMillis();
-        if (!gameOver && currentTime - lastUpdate > 1000) {
+        if (!gameOver && currentTime - lastUpdate > (800 * Math.pow(0.9, level))) {
             if (currentShape.canMoveDown(gridService.getGrid())) {
                 currentShape.moveDown(gridService.getGrid());
             } else {
+                gridService.addShapeToGrid(currentShape);
+
                 clearFullRows();
+
                 currentShape = spawnNewShape();
                 if (currentShape.isColliding(gridService.getGrid())) {
                     gameOver = true;
@@ -44,12 +51,12 @@ public class GameService {
     }
 
     private void clearFullRows() {
-        gridService.addShapeToGrid(currentShape);
         int clearedRows = gridService.clearFullRows();
-        increaseScore(clearedRows);
+        updateScore(clearedRows);
+        updateLevel(clearedRows);
     }
 
-    private void increaseScore(int clearedRows) {
+    private void updateScore(int clearedRows) {
         int points;
         switch (clearedRows) {
             case 1:
@@ -68,7 +75,16 @@ public class GameService {
                 points = 0;
         }
 
-        score += points;
+        score += points * (level + 1);
+    }
+
+    private void updateLevel(int clearedRows) {
+        linesClearedAtCurrentLevel += clearedRows;
+
+        if (linesClearedAtCurrentLevel >= ROWS_PER_LEVEL) {
+            level++;
+            linesClearedAtCurrentLevel -= ROWS_PER_LEVEL;
+        }
     }
 
     private Shape spawnNewShape() {

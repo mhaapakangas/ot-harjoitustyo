@@ -47,7 +47,7 @@ public class GameScene {
 
                 GraphicsContext context = canvas.getGraphicsContext2D();
                 drawBackground(context, canvas);
-                drawScore(context, canvas, gameService.getScore());
+                drawScore(context, canvas, gameService.getScore(), gameService.getLevel());
                 drawGrid(context);
 
                 if (gameService.isGameOver()) {
@@ -89,7 +89,7 @@ public class GameScene {
         context.fillRect(0, SCORE_HEIGHT, canvas.getWidth(), canvas.getHeight());
     }
 
-    private void drawScore(GraphicsContext context, Canvas canvas, int score) {
+    private void drawScore(GraphicsContext context, Canvas canvas, int score, int level) {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), SCORE_HEIGHT);
 
@@ -101,7 +101,7 @@ public class GameScene {
         context.setTextBaseline(VPos.CENTER);
         context.setFont(new Font(20));
         context.fillText(
-            "Current score: " + score,
+            String.format("score: %d  level: %d", score, level),
             Math.round(canvas.getWidth() / 2),
             Math.round(20)
         );
