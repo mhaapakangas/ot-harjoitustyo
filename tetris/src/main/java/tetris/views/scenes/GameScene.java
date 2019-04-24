@@ -26,6 +26,7 @@ public class GameScene {
     private GameService gameService;
     private ScoreService scoreService;
     private SceneManager sceneManager;
+    private static final int BORDER_WIDTH = 3;
     private static final int SCORE_HEIGHT = 40;
     private static final int GAME_OVER_WIDTH = 200;
     private static final int GAME_OVER_HEIGHT = 160;
@@ -88,6 +89,10 @@ public class GameScene {
     private void drawScore(GraphicsContext context, Canvas canvas, int score) {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), SCORE_HEIGHT);
+
+        context.setFill(Color.DARKGRAY);
+        context.fillRect(0, SCORE_HEIGHT - BORDER_WIDTH, canvas.getWidth(), BORDER_WIDTH);
+
         context.setFill(Color.WHITE);
         context.setTextAlign(TextAlignment.CENTER);
         context.setTextBaseline(VPos.CENTER);

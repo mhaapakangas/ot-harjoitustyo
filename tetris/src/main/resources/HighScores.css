@@ -1,0 +1,51 @@
+.table-view {
+    -fx-background-color: DARKSLATEGRAY;
+}
+
+#layout {
+    -fx-padding: 20px;
+    -fx-background-color: DARKSLATEGRAY;
+}
+
+.table-row-cell,
+.column-header,
+.table-row-cell:filled:selected,
+.table-row-cell:selected {
+    -fx-background-color: DARKSLATEGRAY;
+    -fx-table-cell-border-color: DARKSLATEGRAY;
+    -fx-text-background-color: LEMONCHIFFON;
+    -fx-font-size: 16px;
+}
+
+#title {
+      -fx-font: 33px Helvetica;
+        -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, MEDIUMPURPLE 0%, HOTPINK 50%);
+
+}
+
+.column-header {
+    -fx-font-size: 18px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: LEMONCHIFFON;
+}
+
+#playerCol .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+#scoreCol,
+#rankCol,
+#scoreCol .label {
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.button,
+.button:hover:pressed {
+    -fx-background-color: HOTPINK;
+    -fx-text-fill: DARKSLATEGRAY;
+    -fx-font-size: 16px;
+}
+
+.button:hover {
+    -fx-background-color: #f751a3;
+}
