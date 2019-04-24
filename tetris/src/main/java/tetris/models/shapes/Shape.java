@@ -80,6 +80,10 @@ public abstract class Shape {
         if (position.getPosX() + x >= GRID_WIDTH) {
             return true;
         }
+
+        if (position.getPosY() + y < 0) {
+            return true;
+        }
         return position.getPosY() + y >= GRID_HEIGHT;
     }
 

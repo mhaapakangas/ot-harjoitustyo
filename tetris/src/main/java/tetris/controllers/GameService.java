@@ -21,30 +21,35 @@ public class GameService {
 
     @Inject
     public GameService(GridService gridService) {
-        currentShape = createShape();
+        currentShape = spawnNewShape();
         lastUpdate = System.currentTimeMillis();
         this.gridService = gridService;
     }
 
     public void update() {
         long currentTime = System.currentTimeMillis();
-        if (!gameOver && currentTime - lastUpdate > 250) {
-            currentShape.moveDown(gridService.getGrid());
-            lastUpdate = currentTime;
-            if (!currentShape.canMoveDown(gridService.getGrid())) {
-                gridService.addShapeToGrid(currentShape);
-                int clearedRows = gridService.clearFullRows();
-                score += clearedRows * 100;
-
-                currentShape = createShape();
+        if (!gameOver && currentTime - lastUpdate > 1000) {
+            if (currentShape.canMoveDown(gridService.getGrid())) {
+                currentShape.moveDown(gridService.getGrid());
+            } else {
+                clearFullRows();
+                currentShape = spawnNewShape();
                 if (currentShape.isColliding(gridService.getGrid())) {
                     gameOver = true;
                 }
             }
+
+            lastUpdate = currentTime;
         }
     }
 
-    private Shape createShape() {
+    private void clearFullRows() {
+        gridService.addShapeToGrid(currentShape);
+        int clearedRows = gridService.clearFullRows();
+        score += clearedRows * 100;
+    }
+
+    private Shape spawnNewShape() {
         Random random = new Random();
         switch (random.nextInt(SHAPE_COUNT)) {
             case 0:
