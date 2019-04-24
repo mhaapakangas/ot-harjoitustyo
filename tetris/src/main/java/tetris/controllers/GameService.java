@@ -76,6 +76,12 @@ public class GameService {
         currentShape.rotate(gridService.getGrid());
     }
 
+    public void dropShape() {
+        while (currentShape.canMoveDown(gridService.getGrid())) {
+            currentShape.moveDown(gridService.getGrid());
+        }
+    }
+
     public int[][] getRenderGrid() {
         return gridService.getRenderGrid(currentShape);
     }

@@ -71,6 +71,9 @@ public class GameScene {
                     case UP:
                         gameService.rotateShape();
                         break;
+                    case DOWN:
+                        gameService.dropShape();
+                        break;
                 }
             });
 
