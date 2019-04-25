@@ -2,19 +2,15 @@ package tetris.controllers;
 
 import com.google.inject.Inject;
 import lombok.Getter;
-
-import tetris.models.Position;
-import tetris.models.shapes.*;
-
-import java.util.Random;
+import tetris.models.shapes.Shape;
 
 import static tetris.models.Constants.ROWS_PER_LEVEL;
-import static tetris.models.Constants.SHAPE_COUNT;
 
 public class GameService {
     private Shape currentShape;
     private long lastUpdate;
     private GridService gridService;
+    private ShapeGenerator shapeGenerator;
     @Getter
     private boolean gameOver = false;
     @Getter
@@ -24,10 +20,11 @@ public class GameService {
     private int linesClearedAtCurrentLevel = 0;
 
     @Inject
-    public GameService(GridService gridService) {
-        currentShape = spawnNewShape();
+    public GameService(GridService gridService, ShapeGenerator shapeGenerator) {
         lastUpdate = System.currentTimeMillis();
         this.gridService = gridService;
+        this.shapeGenerator = shapeGenerator;
+        currentShape = shapeGenerator.getNewShape();
     }
 
     public void update() {
@@ -40,7 +37,7 @@ public class GameService {
 
                 clearFullRows();
 
-                currentShape = spawnNewShape();
+                currentShape = shapeGenerator.getNewShape();
                 if (currentShape.isColliding(gridService.getGrid())) {
                     gameOver = true;
                 }
@@ -84,26 +81,6 @@ public class GameService {
         if (linesClearedAtCurrentLevel >= ROWS_PER_LEVEL) {
             level++;
             linesClearedAtCurrentLevel -= ROWS_PER_LEVEL;
-        }
-    }
-
-    private Shape spawnNewShape() {
-        Random random = new Random();
-        switch (random.nextInt(SHAPE_COUNT)) {
-            case 0:
-                return new TShape(new Position(4, 0));
-            case 1:
-                return new LShape(new Position(4, 0));
-            case 2:
-                return new SShape(new Position(4, 0));
-            case 3:
-                return new ZShape(new Position(4, 0));
-            case 4:
-                return new JShape(new Position(4, 0));
-            case 5:
-                return new IShape(new Position(3, -1));
-            default:
-                return new OShape(new Position(4, 0));
         }
     }
 
