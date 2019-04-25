@@ -1,9 +1,47 @@
 # Arkkitehtuurikuvaus
+## Pakkausrakenne
+Sovelluksen rakenne on variaatio kolmitasoisesta kerrosarkkitehtuurista,
+ja sen pakkausrakenne on seuraavanlainen:
+![Pakkausrakenne](images/simplePackageDiagram.png)
+
+Tetris.views pakkaus sisältää pelin näyttämiseen ja käyttöliittymään liittyvän koodin.
+Tetris.controllers sisältää pelin logiikan ja vastaa pelitilanteen päivittämisestä.
+Tetris.daos vastaa tietokantaoperaatioista, ja tetris.models pakkaus sisältää sovelluksen käyttämät datamallit.
+
 ## Rakenne
-Sovelluksen rakenne pakkauskaaviona:
+Sovelluksen luokka- ja pakkausrakenne on kuvattu seuraavassa kaaviossa. Luokkiin injektoidaan niiden riippuvuudet
+konstruktoria kutsuttaessa.
 ![Arkkitehtuurikuvaus](images/PackageDiagram.jpg)
 
+### Käyttöliittymä
+
+Käyttöliittymä sisältää kolme näkymää: menun, pistetilaston ja pelinäkymän, joista jokaisella on oma Scene-olionsa.
+SceneManager-luokka hallinnoi näkymiä ja asettaa näytettävän näkymään Stage-olioon.
+
+Pistetilaston näyttävä HighScoreScene hakee tarvittavan tiedon kutsumalla ScoreService-luokan metodeja. GameScene-luokka
+piirtää Canvas-oliota käyttäen pelitilanteen. GameScene päivittää pelitilanteen tietyin väliajoin sekä käsittelee käyttäjän
+antamat käskyt kutsumalla GameService-luokan metodeja. Kun peli päättyy, GameScene kutsuu ScoreServicen metodia ja
+tallentaa uudet pisteet.
+
+### Sovelluslogiikka
+
+GameService vastaa pelitilanteesta eli pelissä olevasta palikasta, aiemmat palikat sisältävästä taulukosta,
+pistetilanteesta ja pelin tasosta. GameService lisää taulukkoon uuden palikan tai poistaa täysiä rivejä kutsumalla
+GridService-luokkaa, joka sisältää taulukon käsittelyyn liittyvän logiikan.
+
+Pelissä olevaa palikkaa, jota käyttäjä voi liikutella, kuvaa abstrakti Shape-luokka. Se sisältää palikan liikuttamiseen
+ja pyörittämiseen liittyvän logiikan, ja Shape-luokasta periytyvät, erimuotoisia palikoita kuvaavat, luokat sisältävät
+ainoastaan palikan eri orientaatiot ja värin.  
+
+### Tallennuslogiikka
+
+ScoreDao-rajapinta tarjoaa sovelluslogiikan käyttöön metodit uusien pisteiden tallennukseen sekä parhaiden pisteiden
+hakemiseen. Sen toteuttava ScoreDaoImpl-luokka sisältää logiikan pisteiden tallentamiseen sql-tietokantaan ja
+tiedon hakemiseen tietokannasta. ScoreDaoImpl ottaa DatabaseService-luokan avulla yhteyden sovelluksen käyttämään h2-tietokantaan.
+
 ## Toiminnallisuus
+
+### Pelitilanteen päivittäminen
 
 ### Palikan siirtäminen vasemmalle
 
