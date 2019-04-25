@@ -7,20 +7,32 @@ import tetris.models.shapes.Shape;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
+/**
+ * This class is responsible for modifying the game grid.
+ */
 public class GridService {
     @Getter
     private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
 
-    public void addShapeToGrid(Shape currentShape) {
-        addShapeToGrid(currentShape, grid);
+    /**
+     * Adds a new shape to the game grid.
+     * @param shape shape to add
+     */
+    public void addShapeToGrid(Shape shape) {
+        addShapeToGrid(shape, grid);
     }
 
-    public int[][] getRenderGrid(Shape currentShape) {
+    /**
+     * Creates and returns a new grid from game grid and a shape.
+     * @param shape shape to add to grid
+     * @return the new grid.
+     */
+    public int[][] getRenderGrid(Shape shape) {
         int[][] renderGrid = new int[GRID_WIDTH][GRID_HEIGHT];
         for (int i = 0; i < GRID_WIDTH; i++) {
             renderGrid[i] = grid[i].clone();
         }
-        addShapeToGrid(currentShape, renderGrid);
+        addShapeToGrid(shape, renderGrid);
         return renderGrid;
     }
 
@@ -37,6 +49,11 @@ public class GridService {
         }
     }
 
+    /**
+     * Counts and clears full rows from game grid. Moves rows above cleared
+     * ones down.
+     * @return the number of cleared rows.
+     */
     public int clearFullRows() {
         int clearedRows = 0;
         rows:

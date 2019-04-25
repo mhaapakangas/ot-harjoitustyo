@@ -6,6 +6,9 @@ import tetris.models.shapes.Shape;
 
 import static tetris.models.Constants.ROWS_PER_LEVEL;
 
+/**
+ * This class is responsible for maintaining and updating the game state.
+ */
 public class GameService {
     private Shape currentShape;
     private long lastUpdate;
@@ -27,9 +30,17 @@ public class GameService {
         currentShape = shapeGenerator.getNewShape();
     }
 
+    /**
+     * This method updates the game state if game is ongoing and
+     * game update rate is reached.
+     *
+     * It moves the current shape down if possible. Otherwise it
+     * clears full rows, updates the score and spawns a new shape.
+     *
+     */
     public void update() {
         long currentTime = System.currentTimeMillis();
-        if (!gameOver && currentTime - lastUpdate > (800 * Math.pow(0.9, level))) {
+        if (!gameOver && currentTime - lastUpdate > getUpdateInterval()) {
             if (currentShape.canMoveDown(gridService.getGrid())) {
                 currentShape.moveDown(gridService.getGrid());
             } else {
@@ -38,13 +49,17 @@ public class GameService {
                 clearFullRows();
 
                 currentShape = shapeGenerator.getNewShape();
-                if (currentShape.isColliding(gridService.getGrid())) {
+                if (currentShape.hasValidPosition(gridService.getGrid())) {
                     gameOver = true;
                 }
             }
 
             lastUpdate = currentTime;
         }
+    }
+
+    private double getUpdateInterval() {
+        return 800 * Math.pow(0.9, level);
     }
 
     private void clearFullRows() {
@@ -84,24 +99,40 @@ public class GameService {
         }
     }
 
+    /**
+     * Moves current shape left if possible.
+     */
     public void moveShapeLeft() {
         currentShape.moveLeft(gridService.getGrid());
     }
 
+    /**
+     * Moves current shape right if possible.
+     */
     public void moveShapeRight() {
         currentShape.moveRight(gridService.getGrid());
     }
 
+    /**
+     * Rotates current shape if possible.
+     */
     public void rotateShape() {
         currentShape.rotate(gridService.getGrid());
     }
 
+    /**
+     * Moves current shape down until it hits an obstacle.
+     */
     public void dropShape() {
         while (currentShape.canMoveDown(gridService.getGrid())) {
             currentShape.moveDown(gridService.getGrid());
         }
     }
 
+    /**
+     * Returns a color grid of game state for rendering
+     * @return the grid.
+     */
     public int[][] getRenderGrid() {
         return gridService.getRenderGrid(currentShape);
     }

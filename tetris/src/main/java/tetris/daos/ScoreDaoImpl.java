@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for reading and writing scores to database.
+ */
 public class ScoreDaoImpl implements ScoreDao {
     private DatabaseService service;
 
@@ -13,6 +16,10 @@ public class ScoreDaoImpl implements ScoreDao {
         this.service = new DatabaseService();
     }
 
+    /**
+     * Saves a new score to database.
+     * @param score new {@link Score}
+     */
     @Override
     public void saveScore(Score score) {
         try {
@@ -28,6 +35,10 @@ public class ScoreDaoImpl implements ScoreDao {
         }
     }
 
+    /**
+     * Retrieves 10 highest scores in descending order from database.
+     * @return the high score list.
+     */
     @Override
     public List<Score> getHighScores() {
         List<Score> scores = new ArrayList<>();

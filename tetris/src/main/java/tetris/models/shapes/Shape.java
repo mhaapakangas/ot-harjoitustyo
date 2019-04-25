@@ -7,6 +7,9 @@ import tetris.models.Position;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
+/**
+ * Abstract class representing a game shape
+ */
 public abstract class Shape {
     @Getter
     protected Position position;
@@ -15,48 +18,79 @@ public abstract class Shape {
     private int rotationIndex = 0;
     protected int[][][] rotations;
 
+    /**
+     * Returns current orientation of the shape.
+     * @return the orientation.
+     */
     public int[][] getOrientation() {
         return rotations[rotationIndex];
     }
 
+    /**
+     * Moves shape left if it's not blocked by another shape in the grid or out of bounds.
+     * @param grid game grid
+     */
     public void moveLeft(int[][] grid) {
         Position newPosition = new Position(position.getPosX() - 1, position.getPosY());
-        if (!isColliding(grid, newPosition, getOrientation())) {
+        if (!isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
+    /**
+     * Moves shape right if it's not blocked by another shape in the grid or out of bounds.
+     * @param grid game grid
+     */
     public void moveRight(int[][] grid) {
         Position newPosition = new Position(position.getPosX() + 1, position.getPosY());
-        if (!isColliding(grid, newPosition, getOrientation())) {
+        if (!isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
+    /**
+     * Moves shape down if it's not blocked by another shape in the grid or out of bounds.
+     * @param grid game grid
+     */
     public void moveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        if (!isColliding(grid, newPosition, getOrientation())) {
+        if (!isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
 
+    /**
+     * Check if shape can move down in the grid
+     * @param grid game grid
+     * @return true if shape can move down, otherwise false
+     */
     public boolean canMoveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        return !isColliding(grid, newPosition, getOrientation());
+        return !isValidPosition(grid, newPosition, getOrientation());
     }
 
-    public boolean isColliding(int[][] grid) {
-        return isColliding(grid, position, getOrientation());
+    /**
+     * Check if the current position of the shape overlaps with shapes in the grid or
+     * is out of bounds.
+     * @param grid game grid
+     * @return true if position is valid, otherwise false
+     */
+    public boolean hasValidPosition(int[][] grid) {
+        return isValidPosition(grid, position, getOrientation());
     }
 
+    /**
+     * Rotates shape if it's not blocked by another shape in the grid or out of bounds.
+     * @param grid game grid
+     */
     public void rotate(int[][] grid) {
         int newRotationIndex = (rotationIndex + 1) % 4;
-        if (!isColliding(grid, position, rotations[newRotationIndex])) {
+        if (!isValidPosition(grid, position, rotations[newRotationIndex])) {
             rotationIndex = newRotationIndex;
         }
     }
 
-    private boolean isColliding(int[][] grid, Position position, int[][] orientation) {
+    private boolean isValidPosition(int[][] grid, Position position, int[][] orientation) {
         for (int i = 0; i < orientation.length; i++) {
             for (int j = 0; j < orientation[0].length; j++) {
                 if (orientation[j][i] != 0) {

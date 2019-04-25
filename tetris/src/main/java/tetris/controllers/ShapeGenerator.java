@@ -7,8 +7,15 @@ import java.util.Random;
 
 import static tetris.models.Constants.SHAPE_COUNT;
 
+/**
+ * This generates shapes for the game.
+ */
 public class ShapeGenerator {
 
+    /**
+     * Generates a new random shape.
+     * @return the shape.
+     */
     public Shape getNewShape() {
         Random random = new Random();
         switch (random.nextInt(SHAPE_COUNT)) {
