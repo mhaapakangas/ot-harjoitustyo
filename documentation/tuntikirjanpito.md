@@ -14,4 +14,7 @@
 | 15.4. | 4 | Tietokannan lisääminen, pisteiden tallennus |
 | 16.4. | 2 | Riippuvuusinjektioiden lisääminen, puuttuvat palikat ja yksikkötestausta|
 | 16.4. | 1 | Sekvenssikaavio ja dokumentaation päivitys |
-| Yht.  | 23  |  |
+| 22.4. | 3 | Ulkoasun muotoilu css-tyyleillä, pieniä parannuksia logiikkaan |
+| 24.4. | 3 | Sovelluslogiikka palikan pudotukselle, pisteiden laskulle ja vaikeustasoille |
+| 25.4. | 4 | Yksikkötestausta, java docin lisäys ja dokumentaation päivitys |
+| Yht.  | 33  |  |
