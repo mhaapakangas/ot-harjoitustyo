@@ -4,6 +4,8 @@ Tetris on geometrinen ongelmanratkaisupeli, jossa pelaaja asettelee erimuotoisia
 Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 ## Dokumentaatio
+[Käyttöohje](/documentation/kayttoohje.md)
+
 [Vaatimusmäärittely](/documentation/requirements.md)
 
 [Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
@@ -12,6 +14,8 @@ Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 ## Releaset
 [Viikko 5](https://github.com/mhaapakangas/ot-harjoitustyo/releases/tag/viikko5)
+
+[Viikko 6](https://github.com/mhaapakangas/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
 ### Ohjelman suorittaminen
@@ -43,6 +47,13 @@ mvn test jacoco:report
 ```
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston _target/site/jacoco/index.html_.
 
+### JavaDoc
+
+JavaDocin voi generoida komennolla:
+```
+mvn javadoc:javadoc
+```
+JavaDocia voi tarkastella avaamalla selaimella tiedoston _target/site/apidocs/index.html_.
 
 ### Checkstyle
 Tiedoston [checkstyle.xml](/tetris/checkstyle.xml) määrittelemät kooditarkistukset voi suorittaa komennolla:
