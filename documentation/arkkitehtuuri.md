@@ -41,13 +41,30 @@ tiedon hakemiseen tietokannasta. ScoreDaoImpl ottaa DatabaseService-luokan avull
 
 ## Toiminnallisuus
 
-### Pelitilanteen päivittäminen
+### Pelitilanteen päivittyminen
 
-### Palikan siirtäminen vasemmalle
+GameScene-luokan AnimationTimer piirtää pelitilanteen ja kutsuu GameServicen update-metodia, joka päivittää pelitilanteen
+kun edellisestä päivityksestä on kulunut tarpeeksi. Jos palikka voi liikkua alaspäin, sitä pudotetaan taulukossa
+yksi rivi.
 
+Jos palikka ei voi enää pudota, se lisätään taulukkoon. Tämän jälkeen GameService tyhjentää täydet rivit kutsumalla
+GridServicen clearFullRows-metodia, ja päivittää täysien rivien perusteella pistetilanteen ja pelin vaikeustason. Sen
+jälkeen peliin lisätään uusi palikka. Jos lisätty palikka on aiempien palikoiden päällä, GameService merkitsee pelin
+päättyneeksi.
+
+Kaavio pelitilanteen päivityksestä, kun palikka on pudonnut ja muodostanut yhden täyden rivin. Uuden palikan lisäämisen
+jälkeen peli jatkuu.
+![PaivitaPelitilanne](images/UpdateGameDiagram.png)
+
+### Palikan liikuttaminen
+
+Pelinäkymässä GameScene-luokan EventHandler kuuntelee pelaajan tekemiä näppäimen painalluksia, ja välittää
+komennot eteenpäin kutsumalla GameService-luokan moveShapeLeft-, moveShapeRight-, rotateShape- ja dropShape-metodeja.
+
+Kaavio palikan liikuttamisesta vasemmalle:
 ![LiikutaVasemmalle](images/MoveLeftDiagram.png)
 
-Kun käyttäjä painaa pelinäkymässä vasenta nuolinäppäintä, GameScene välittää pyynnön
-GameService-luokalle. GameService pyytää GridService-luokalta pelitilannetta kuvaavan
+GameService pyytää GridService-luokalta pelitilannetta kuvaavan
 taulukon, ja yrittää siirtää palikkaa vasemmalle. Shape-luokka tarkistaa, voiko palikka
 liikkua haluttuun suuntaan. Jos liikkuminen onnistuu, palikan sijainti päivitetään. 
+ 

@@ -17,4 +17,5 @@
 | 22.4. | 3 | Ulkoasun muotoilu css-tyyleillä, pieniä parannuksia logiikkaan |
 | 24.4. | 3 | Sovelluslogiikka palikan pudotukselle, pisteiden laskulle ja vaikeustasoille |
 | 25.4. | 4 | Yksikkötestausta, java docin lisäys ja dokumentaation päivitys |
-| Yht.  | 33  |  |
+| 26.4 | 2 | Uusi release ja dokumentaation päivitys |
+| Yht.  | 35  |  |
