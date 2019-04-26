@@ -49,7 +49,7 @@ public class GameService {
                 clearFullRows();
 
                 currentShape = shapeGenerator.getNewShape();
-                if (currentShape.hasValidPosition(gridService.getGrid())) {
+                if (!currentShape.hasValidPosition(gridService.getGrid())) {
                     gameOver = true;
                 }
             }

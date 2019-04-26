@@ -32,7 +32,7 @@ public abstract class Shape {
      */
     public void moveLeft(int[][] grid) {
         Position newPosition = new Position(position.getPosX() - 1, position.getPosY());
-        if (!isValidPosition(grid, newPosition, getOrientation())) {
+        if (isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
@@ -43,7 +43,7 @@ public abstract class Shape {
      */
     public void moveRight(int[][] grid) {
         Position newPosition = new Position(position.getPosX() + 1, position.getPosY());
-        if (!isValidPosition(grid, newPosition, getOrientation())) {
+        if (isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
@@ -54,7 +54,7 @@ public abstract class Shape {
      */
     public void moveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        if (!isValidPosition(grid, newPosition, getOrientation())) {
+        if (isValidPosition(grid, newPosition, getOrientation())) {
             position = newPosition;
         }
     }
@@ -66,7 +66,7 @@ public abstract class Shape {
      */
     public boolean canMoveDown(int[][] grid) {
         Position newPosition = new Position(position.getPosX(), position.getPosY() + 1);
-        return !isValidPosition(grid, newPosition, getOrientation());
+        return isValidPosition(grid, newPosition, getOrientation());
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class Shape {
      */
     public void rotate(int[][] grid) {
         int newRotationIndex = (rotationIndex + 1) % 4;
-        if (!isValidPosition(grid, position, rotations[newRotationIndex])) {
+        if (isValidPosition(grid, position, rotations[newRotationIndex])) {
             rotationIndex = newRotationIndex;
         }
     }
@@ -95,16 +95,16 @@ public abstract class Shape {
             for (int j = 0; j < orientation[0].length; j++) {
                 if (orientation[j][i] != 0) {
                     if (isOutsideScreen(position, i, j)) {
-                        return true;
+                        return false;
                     }
 
                     if (isCollidingWithGrid(grid, position, i, j)) {
-                        return true;
+                        return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private boolean isOutsideScreen(Position position, int x, int y) {

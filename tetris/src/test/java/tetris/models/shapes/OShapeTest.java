@@ -106,16 +106,16 @@ public class OShapeTest {
     }
 
     @Test
-    public void hasValidPositionReturnsFalseWhenNoCollision() {
+    public void hasValidPositionReturnsTrueWhenNoCollision() {
         shape = new OShape(new Position(5, 4));
         grid[6][6] = 1;
-        assertFalse(shape.hasValidPosition(grid));
+        assertTrue(shape.hasValidPosition(grid));
     }
 
     @Test
-    public void hasValidPositionReturnsTrueWhenColliding() {
+    public void hasValidPositionReturnsFalseWhenColliding() {
         shape = new OShape(new Position(5, 4));
         grid[6][4] = 1;
-        assertTrue(shape.hasValidPosition(grid));
+        assertFalse(shape.hasValidPosition(grid));
     }
 }
