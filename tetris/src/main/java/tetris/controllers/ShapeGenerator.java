@@ -1,5 +1,6 @@
 package tetris.controllers;
 
+import com.google.inject.Inject;
 import tetris.models.Position;
 import tetris.models.shapes.*;
 
@@ -11,13 +12,18 @@ import static tetris.models.Constants.SHAPE_COUNT;
  * This generates shapes for the game.
  */
 public class ShapeGenerator {
+    private Random random;
+
+    @Inject
+    public ShapeGenerator(Random random) {
+        this.random = random;
+    }
 
     /**
      * Generates a new random shape.
      * @return the shape.
      */
     public Shape getNewShape() {
-        Random random = new Random();
         switch (random.nextInt(SHAPE_COUNT)) {
             case 0:
                 return new TShape(new Position(4, 0));

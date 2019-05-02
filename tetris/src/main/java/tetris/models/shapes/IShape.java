@@ -1,8 +1,10 @@
 package tetris.models.shapes;
 
+import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
+@EqualsAndHashCode
 public class IShape extends Shape {
     public IShape(Position position) {
         this.position = position;

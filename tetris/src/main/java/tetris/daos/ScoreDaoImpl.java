@@ -1,5 +1,6 @@
 package tetris.daos;
 
+import com.google.inject.Inject;
 import tetris.models.Score;
 
 import java.sql.*;
@@ -12,8 +13,9 @@ import java.util.List;
 public class ScoreDaoImpl implements ScoreDao {
     private DatabaseService service;
 
-    public ScoreDaoImpl() {
-        this.service = new DatabaseService();
+    @Inject
+    public ScoreDaoImpl(DatabaseService service) {
+        this.service = service;
     }
 
     /**
@@ -46,9 +48,8 @@ public class ScoreDaoImpl implements ScoreDao {
         try {
             Connection connection = service.createConnection();
             Statement stmt = connection.createStatement();
-            ResultSet rs;
 
-            rs = stmt.executeQuery("SELECT * FROM SCORE ORDER BY SCORE DESC LIMIT 10");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM SCORE ORDER BY SCORE DESC LIMIT 10");
             while (rs.next()) {
                 String username = rs.getString("USERNAME");
                 int score = rs.getInt("SCORE");

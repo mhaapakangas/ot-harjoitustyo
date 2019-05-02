@@ -19,7 +19,7 @@
 
 #title {
       -fx-font: 33px Helvetica;
-        -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, MEDIUMPURPLE 0%, HOTPINK 50%);
+      -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, MEDIUMPURPLE 0%, HOTPINK 50%);
 
 }
 
