@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import lombok.Getter;
 
 public class MenuScene {
@@ -13,6 +14,9 @@ public class MenuScene {
 
     @Inject
     public MenuScene(SceneManager sceneManager) {
+        Text title = new Text();
+        title.setText("TETRIS");
+
         Button startGameButton = new Button("New game");
         startGameButton.setOnAction(e -> {
             sceneManager.setScene(AppScene.GAME_SCENE);
@@ -28,7 +32,7 @@ public class MenuScene {
             sceneManager.setScene(AppScene.SETTINGS_SCENE);
         });
 
-        VBox layout = new VBox(startGameButton, highScoresButton, settingsButton);
+        VBox layout = new VBox(title, startGameButton, highScoresButton, settingsButton);
         layout.setSpacing(10);
         layout.setAlignment(Pos.CENTER);
 

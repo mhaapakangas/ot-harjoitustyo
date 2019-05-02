@@ -2,6 +2,7 @@ package tetris.views.scenes;
 
 import com.google.inject.Inject;
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.BooleanBinding;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -148,9 +149,21 @@ public class GameScene {
         saveScore.setLayoutX(108);
         saveScore.setLayoutY(315);
         saveScore.setOnAction(e -> {
-            scoreService.saveScore(gameService.getScore(), usernameField.getText());
+            scoreService.saveScore(gameService.getScore(), usernameField.getText().trim());
             sceneManager.setScene(AppScene.MENU_SCENE);
         });
+
+        BooleanBinding binding = new BooleanBinding() {
+            {
+                super.bind(usernameField.textProperty());
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return usernameField.getText().trim().isEmpty();
+            }
+        };
+        saveScore.disableProperty().bind(binding);
 
         root.getChildren().addAll(usernameField, saveScore);
     }
