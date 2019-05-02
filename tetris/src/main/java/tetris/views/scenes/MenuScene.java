@@ -23,7 +23,12 @@ public class MenuScene {
             sceneManager.setScene(AppScene.HIGH_SCORE_SCENE);
         });
 
-        VBox layout = new VBox(startGameButton, highScoresButton);
+        Button settingsButton = new Button("Settings");
+        settingsButton.setOnAction(e -> {
+            sceneManager.setScene(AppScene.SETTINGS_SCENE);
+        });
+
+        VBox layout = new VBox(startGameButton, highScoresButton, settingsButton);
         layout.setSpacing(10);
         layout.setAlignment(Pos.CENTER);
 

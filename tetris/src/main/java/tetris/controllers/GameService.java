@@ -19,13 +19,14 @@ public class GameService {
     @Getter
     private int score = 0;
     @Getter
-    private int level = 0;
+    private int level;
     private int linesClearedAtCurrentLevel = 0;
 
     @Inject
-    public GameService(GridService gridService, ShapeGenerator shapeGenerator) {
+    public GameService(GridService gridService, ShapeGenerator shapeGenerator, LevelService levelService) {
         lastUpdate = System.currentTimeMillis();
         this.gridService = gridService;
+        this.level = levelService.getLevel().getLevel();
         this.shapeGenerator = shapeGenerator;
         currentShape = shapeGenerator.getNewShape();
     }

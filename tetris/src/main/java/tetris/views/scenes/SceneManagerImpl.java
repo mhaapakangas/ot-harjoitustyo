@@ -18,6 +18,9 @@ public class SceneManagerImpl implements SceneManager {
             case HIGH_SCORE_SCENE:
                 stage.setScene(injector.getInstance(HighScoreScene.class).getScene());
                 break;
+            case SETTINGS_SCENE:
+                stage.setScene(injector.getInstance(SettingsScene.class).getScene());
+                break;
         }
     }
 
