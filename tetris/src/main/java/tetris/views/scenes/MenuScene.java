@@ -16,6 +16,7 @@ public class MenuScene {
     public MenuScene(SceneManager sceneManager) {
         Text title = new Text();
         title.setText("TETRIS");
+        title.setId("title");
 
         Button startGameButton = new Button("New game");
         startGameButton.setOnAction(e -> {
@@ -35,7 +36,9 @@ public class MenuScene {
         VBox layout = new VBox(title, startGameButton, highScoresButton, settingsButton);
         layout.setSpacing(10);
         layout.setAlignment(Pos.CENTER);
+        layout.setId("layout");
 
         this.scene = new Scene(layout, 300, 250);
+        scene.getStylesheets().add("Menu.css");
     }
 }

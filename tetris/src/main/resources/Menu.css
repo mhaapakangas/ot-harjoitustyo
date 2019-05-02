@@ -1,0 +1,19 @@
+#layout {
+    -fx-background-color: DARKSLATEGRAY;
+}
+
+.button,
+.button:hover:pressed {
+    -fx-background-color: HOTPINK;
+    -fx-text-fill: DARKSLATEGRAY;
+    -fx-font-size: 16px;
+}
+
+.button:hover {
+    -fx-background-color: #f751a3;
+}
+
+#title {
+      -fx-font: 33px Helvetica;
+      -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, MEDIUMPURPLE 0%, HOTPINK 50%);
+}

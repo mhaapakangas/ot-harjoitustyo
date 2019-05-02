@@ -3,6 +3,7 @@ package tetris.views.scenes;
 import com.google.inject.Inject;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +26,11 @@ public class SettingsScene {
         title.setText("SETTINGS");
         title.setId("title");
 
+        Text difficultySettingText = new Text();
+        difficultySettingText.setText("Select game difficulty:");
+        difficultySettingText.setId("difficultyText");
+
+        VBox buttonLayout = new VBox();
         ToggleGroup difficultyLevels = new ToggleGroup();
         RadioButton easyButton = new RadioButton("easy");
         easyButton.setToggleGroup(difficultyLevels);
@@ -37,6 +43,10 @@ public class SettingsScene {
         RadioButton hardButton = new RadioButton("hard");
         hardButton.setToggleGroup(difficultyLevels);
         hardButton.setUserData(Level.HARD);
+
+        buttonLayout.getChildren().addAll(easyButton, mediumButton, hardButton);
+        buttonLayout.setSpacing(10);
+        buttonLayout.setPadding(new Insets(0, 0, 0, 110));
 
         switch (levelService.getLevel()) {
             case HARD:
@@ -65,10 +75,11 @@ public class SettingsScene {
         });
 
         VBox layout = new VBox();
-        layout.getChildren().addAll(title, easyButton, mediumButton, hardButton, backToMenuButton);
-        layout.setSpacing(10);
+        layout.getChildren().addAll(title, difficultySettingText, buttonLayout, backToMenuButton);
+        layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
         layout.setId("layout");
-        this.scene = new Scene(layout);
+        this.scene = new Scene(layout, 300, 250);
+        scene.getStylesheets().add("Settings.css");
     }
 }
