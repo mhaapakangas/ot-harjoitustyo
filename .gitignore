@@ -3,4 +3,5 @@ laskarit/viikko2/Maksukortti/target
 laskarit/viikko2/Unicafe/target
 tetris/target
 tetris.mv.db
+tetris.trace.db
 .DS_Store

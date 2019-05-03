@@ -31,6 +31,7 @@ public class GameScene {
     private static final int SCORE_HEIGHT = 40;
     private static final int GAME_OVER_WIDTH = 200;
     private static final int GAME_OVER_HEIGHT = 160;
+    private static final int USERNAME_LIMIT = 50;
 
     @Inject
     public GameScene(SceneManager sceneManager, ScoreService scoreService, GameService gameService) {
@@ -148,7 +149,8 @@ public class GameScene {
         saveScore.setLayoutX(108);
         saveScore.setLayoutY(315);
         saveScore.setOnAction(e -> {
-            scoreService.saveScore(gameService.getScore(), usernameField.getText().trim());
+            scoreService.saveScore(gameService.getScore(),
+                usernameField.getText().trim().substring(0, USERNAME_LIMIT));
             sceneManager.setScene(AppScene.HIGH_SCORE_SCENE);
         });
 

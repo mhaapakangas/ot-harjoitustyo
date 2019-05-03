@@ -51,14 +51,14 @@ public class HighScoreScene {
         TableColumn playerCol = new TableColumn("Player");
         playerCol.setSortable(false);
         playerCol.setResizable(false);
-        playerCol.setPrefWidth(110);
+        playerCol.setPrefWidth(140);
         playerCol.setId("playerCol");
         playerCol.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         TableColumn scoreCol = new TableColumn("Score");
         scoreCol.setSortable(false);
         scoreCol.setResizable(false);
-        scoreCol.setPrefWidth(110);
+        scoreCol.setPrefWidth(80);
         scoreCol.setId("scoreCol");
         scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
 
