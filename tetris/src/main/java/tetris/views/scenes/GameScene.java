@@ -78,7 +78,6 @@ public class GameScene {
                 }
             });
 
-
         root.getChildren().addAll(canvas);
 
         timer.start();
@@ -94,10 +93,10 @@ public class GameScene {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), SCORE_HEIGHT);
 
-        context.setFill(Color.DARKGRAY);
+        context.setFill(Color.MEDIUMPURPLE);
         context.fillRect(0, SCORE_HEIGHT - BORDER_WIDTH, canvas.getWidth(), BORDER_WIDTH);
 
-        context.setFill(Color.WHITE);
+        context.setFill(Color.LEMONCHIFFON);
         context.setTextAlign(TextAlignment.CENTER);
         context.setTextBaseline(VPos.CENTER);
         context.setFont(new Font(20));
@@ -124,16 +123,16 @@ public class GameScene {
     private void drawGameOver(GraphicsContext context, Canvas canvas, Group root) {
         context.setFill(Color.BLACK);
         context.fillRect(50, 200, GAME_OVER_WIDTH, GAME_OVER_HEIGHT);
-        context.setFill(Color.RED);
+        context.setFill(Color.HOTPINK);
         context.setTextAlign(TextAlignment.CENTER);
         context.setTextBaseline(VPos.CENTER);
         context.setFont(new Font(28));
         context.fillText(
-            "Game over",
+            "GAME OVER",
             Math.round(canvas.getWidth() / 2),
-            Math.round(218)
+            Math.round(220)
         );
-        context.setFill(Color.WHITE);
+        context.setFill(Color.LEMONCHIFFON);
         context.setTextAlign(TextAlignment.CENTER);
         context.setTextBaseline(VPos.CENTER);
         context.setFont(new Font(16));
@@ -150,7 +149,7 @@ public class GameScene {
         saveScore.setLayoutY(315);
         saveScore.setOnAction(e -> {
             scoreService.saveScore(gameService.getScore(), usernameField.getText().trim());
-            sceneManager.setScene(AppScene.MENU_SCENE);
+            sceneManager.setScene(AppScene.HIGH_SCORE_SCENE);
         });
 
         BooleanBinding binding = new BooleanBinding() {

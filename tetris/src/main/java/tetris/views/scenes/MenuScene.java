@@ -34,7 +34,7 @@ public class MenuScene {
         });
 
         VBox layout = new VBox(title, startGameButton, highScoresButton, settingsButton);
-        layout.setSpacing(10);
+        layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
         layout.setId("layout");
 
