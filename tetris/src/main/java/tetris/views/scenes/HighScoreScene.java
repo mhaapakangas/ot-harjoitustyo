@@ -6,11 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import lombok.Getter;
@@ -37,6 +37,11 @@ public class HighScoreScene {
         TableView table = new TableView();
         table.setEditable(false);
         table.setMaxSize(300, 350);
+
+        Label noScores = new Label("No high scores yet.");
+        noScores.setId("noScores");
+        table.setPlaceholder(noScores);
+
         List<Score> scores = scoreService.getHighScores();
         scores.forEach(score -> table.getItems().add(score));
 
