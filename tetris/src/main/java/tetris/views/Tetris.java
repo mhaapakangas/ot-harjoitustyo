@@ -11,6 +11,9 @@ import tetris.views.scenes.SceneManager;
 
 import java.sql.SQLException;
 
+/**
+ * This class initializes and launches the application.
+ */
 public class Tetris extends Application {
     private SceneManager sceneManager;
     private Injector injector;
@@ -19,6 +22,10 @@ public class Tetris extends Application {
         launch(args);
     }
 
+    /**
+     * Creates guice injector for dependency injection and initializes
+     * the database.
+     */
     @Override
     public void init() throws SQLException, ClassNotFoundException {
         this.injector = Guice.createInjector(new InjectionModule());
@@ -27,6 +34,11 @@ public class Tetris extends Application {
         service.init();
     }
 
+    /**
+     * Starts the application and displays the menu screen.
+     *
+     * @param primaryStage primary stage of the application
+     */
     public void start(Stage primaryStage) {
         sceneManager.init(injector, primaryStage);
         sceneManager.setScene(AppScene.MENU_SCENE);

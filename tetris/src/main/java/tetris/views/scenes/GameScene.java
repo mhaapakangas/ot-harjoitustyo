@@ -21,6 +21,9 @@ import tetris.views.ColorConverter;
 
 import static tetris.models.Constants.*;
 
+/**
+ * This class builds the scene for playing the Tetris game.
+ */
 public class GameScene {
     @Getter
     private Scene scene;

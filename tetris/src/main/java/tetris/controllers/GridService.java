@@ -9,8 +9,14 @@ import static tetris.models.Constants.GRID_WIDTH;
 
 /**
  * This class is responsible for modifying the game grid.
+ *
  */
 public class GridService {
+    /**
+     * A 2D-array of int representing the game state. Empty cells in
+     * the game grid have the value of 0. Cells that are occupied by blocks
+     * have the ordinal value of a {@link tetris.models.BlockColor}
+     */
     @Getter
     private int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
 

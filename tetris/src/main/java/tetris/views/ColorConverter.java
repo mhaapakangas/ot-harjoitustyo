@@ -6,6 +6,9 @@ import tetris.models.BlockColor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class maps colors of the game shapes to JavaFX paint colors.
+ */
 public class ColorConverter {
     private static Map<Integer, Color> colorMapping = new HashMap<Integer, Color>() {
         {
@@ -19,6 +22,12 @@ public class ColorConverter {
         }
     };
 
+    /**
+     * Converts a block color to a JavaFX paint color.
+     *
+     * @param color Ordinal value of the {@link BlockColor}
+     * @return the converted {@link Color}
+     */
     public static Color convert(int color) {
         return colorMapping.getOrDefault(color, Color.GRAY);
     }

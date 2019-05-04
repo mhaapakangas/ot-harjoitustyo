@@ -16,6 +16,9 @@ import lombok.Getter;
 import tetris.controllers.LevelService;
 import tetris.models.DifficultyLevel;
 
+/**
+ * This class builds the scene for selecting game settings.
+ */
 public class SettingsScene {
     @Getter
     private Scene scene;

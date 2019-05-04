@@ -8,6 +8,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
 
+/**
+ * This class builds the menu scene that displays links to other scenes.
+ */
 public class MenuScene {
     @Getter
     private Scene scene;

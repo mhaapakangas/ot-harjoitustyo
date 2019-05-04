@@ -19,6 +19,9 @@ import tetris.models.Score;
 
 import java.util.List;
 
+/**
+ * This class builds the scene for displaying high scores.
+ */
 public class HighScoreScene {
     @Getter
     private Scene scene;
