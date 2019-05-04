@@ -1,10 +1,11 @@
 package tetris.models.shapes;
 
-import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
-@EqualsAndHashCode
+/**
+ * Class representing I-shape, four blocks in a straight line.
+ */
 public class IShape extends Shape {
     public IShape(Position position) {
         this.position = position;

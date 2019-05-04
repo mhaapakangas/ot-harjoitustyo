@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import tetris.controllers.LevelService;
-import tetris.models.Level;
+import tetris.models.DifficultyLevel;
 
 public class SettingsScene {
     @Getter
@@ -34,15 +34,15 @@ public class SettingsScene {
         ToggleGroup difficultyLevels = new ToggleGroup();
         RadioButton easyButton = new RadioButton("easy");
         easyButton.setToggleGroup(difficultyLevels);
-        easyButton.setUserData(Level.EASY);
+        easyButton.setUserData(DifficultyLevel.EASY);
 
         RadioButton mediumButton = new RadioButton("medium");
         mediumButton.setToggleGroup(difficultyLevels);
-        mediumButton.setUserData(Level.MEDIUM);
+        mediumButton.setUserData(DifficultyLevel.MEDIUM);
 
         RadioButton hardButton = new RadioButton("hard");
         hardButton.setToggleGroup(difficultyLevels);
-        hardButton.setUserData(Level.HARD);
+        hardButton.setUserData(DifficultyLevel.HARD);
 
         buttonLayout.getChildren().addAll(easyButton, mediumButton, hardButton);
         buttonLayout.setSpacing(10);
@@ -63,7 +63,7 @@ public class SettingsScene {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (difficultyLevels.getSelectedToggle() != null) {
-                    Level newLevel = (Level) difficultyLevels.getSelectedToggle().getUserData();
+                    DifficultyLevel newLevel = (DifficultyLevel) difficultyLevels.getSelectedToggle().getUserData();
                     levelService.setLevel(newLevel);
                 }
             }

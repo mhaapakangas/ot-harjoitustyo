@@ -1,10 +1,11 @@
 package tetris.models.shapes;
 
-import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
-@EqualsAndHashCode
+/**
+ * Class representing L-shape, 3 blocks in a line with one added above the right side.
+ */
 public class LShape extends Shape {
     public LShape(Position position) {
         this.position = position;

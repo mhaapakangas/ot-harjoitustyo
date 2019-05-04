@@ -11,7 +11,7 @@ import tetris.views.scenes.SceneManager;
 
 import java.sql.SQLException;
 
-public class MenuView extends Application {
+public class Tetris extends Application {
     private SceneManager sceneManager;
     private Injector injector;
 

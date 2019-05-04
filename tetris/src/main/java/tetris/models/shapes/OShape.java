@@ -1,10 +1,11 @@
 package tetris.models.shapes;
 
-import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
-@EqualsAndHashCode
+/**
+ * Class representing O-shape, square of 2 x 2 blocks.
+ */
 public class OShape extends Shape {
     public OShape(Position position) {
         this.position = position;

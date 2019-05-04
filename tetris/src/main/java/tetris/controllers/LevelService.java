@@ -1,10 +1,13 @@
 package tetris.controllers;
 
-import tetris.models.Level;
+import tetris.models.DifficultyLevel;
 
+/**
+ * Interface for handling the game difficulty level.
+ */
 public interface LevelService {
 
-    Level getLevel();
+    DifficultyLevel getLevel();
 
-    void setLevel(Level level);
+    void setLevel(DifficultyLevel level);
 }

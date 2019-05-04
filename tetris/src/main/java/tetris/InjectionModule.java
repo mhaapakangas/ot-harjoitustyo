@@ -8,6 +8,9 @@ import tetris.daos.ScoreDaoImpl;
 import tetris.views.scenes.SceneManager;
 import tetris.views.scenes.SceneManagerImpl;
 
+/**
+ * This class binds interfaces to their implementations for dependency injection.
+ */
 public class InjectionModule extends AbstractModule {
     @Override
     protected void configure() {

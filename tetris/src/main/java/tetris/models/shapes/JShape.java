@@ -1,10 +1,11 @@
 package tetris.models.shapes;
 
-import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
-@EqualsAndHashCode
+/**
+ * Class representing J-shape, 3 blocks in a line with one added above the left side.
+ */
 public class JShape extends Shape {
     public JShape(Position position) {
         this.position = position;

@@ -1,10 +1,11 @@
 package tetris.models.shapes;
 
-import lombok.EqualsAndHashCode;
 import tetris.models.BlockColor;
 import tetris.models.Position;
 
-@EqualsAndHashCode
+/**
+ * Class representing Z-shape, 2 stacked lines of 2 blocks, with the one above offset to the left.
+ */
 public class ZShape extends Shape {
     public ZShape(Position position) {
         this.position = position;

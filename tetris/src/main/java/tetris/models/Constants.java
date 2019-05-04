@@ -1,5 +1,8 @@
 package tetris.models;
 
+/**
+ * This class holds constants related to the game logic
+ */
 public class Constants {
     public static final int BLOCK_SIZE = 30;
     public static final int GRID_HEIGHT = 20;

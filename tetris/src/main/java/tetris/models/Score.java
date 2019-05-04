@@ -7,6 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
+/**
+ * Class representing a game score.
+ */
 public class Score {
     private int score;
     private String username;

@@ -19,8 +19,7 @@ public class ScoreDaoImpl implements ScoreDao {
     }
 
     /**
-     * Saves a new score to database.
-     * @param score new {@link Score}
+     * @inheritDoc
      */
     @Override
     public void saveScore(Score score) {

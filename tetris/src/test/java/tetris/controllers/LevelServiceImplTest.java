@@ -3,7 +3,7 @@ package tetris.controllers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tetris.models.Level;
+import tetris.models.DifficultyLevel;
 
 public class LevelServiceImplTest {
     private LevelService levelService;
@@ -15,9 +15,9 @@ public class LevelServiceImplTest {
 
     @Test
     public void canSetAndRetrieveLevel() {
-        Level expected = Level.HARD;
+        DifficultyLevel expected = DifficultyLevel.HARD;
 
-        Assert.assertEquals(Level.EASY, levelService.getLevel());
+        Assert.assertEquals(DifficultyLevel.EASY, levelService.getLevel());
 
         levelService.setLevel(expected);
         Assert.assertEquals(expected, levelService.getLevel());

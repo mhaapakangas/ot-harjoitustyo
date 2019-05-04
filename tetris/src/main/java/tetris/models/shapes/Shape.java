@@ -1,5 +1,6 @@
 package tetris.models.shapes;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import tetris.models.BlockColor;
 import tetris.models.Position;
@@ -10,6 +11,7 @@ import static tetris.models.Constants.GRID_WIDTH;
 /**
  * Abstract class representing a game shape
  */
+@EqualsAndHashCode
 public abstract class Shape {
     @Getter
     protected Position position;

@@ -4,7 +4,7 @@ package tetris.controllers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import tetris.models.Level;
+import tetris.models.DifficultyLevel;
 import tetris.models.shapes.Shape;
 
 import static org.mockito.Mockito.*;
@@ -30,7 +30,7 @@ public class GameServiceTest {
         mockedLevelService = mock(LevelService.class);
 
         when(mockedShapeGenerator.getNewShape()).thenReturn(mockedShape);
-        when(mockedLevelService.getLevel()).thenReturn(Level.EASY);
+        when(mockedLevelService.getLevel()).thenReturn(DifficultyLevel.EASY);
         gameService = new GameService(mockedGridService, mockedShapeGenerator, mockedLevelService);
     }
 
