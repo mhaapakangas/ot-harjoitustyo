@@ -29,7 +29,7 @@ public class DatabaseService {
         statement.execute("CREATE TABLE IF NOT EXISTS SCORE" +
             " (ID INT PRIMARY KEY AUTO_INCREMENT," +
             " SCORE INT," +
-            " USERNAME VARCHAR(50) NOT NULL);");
+            " USERNAME VARCHAR(15) NOT NULL);");
 
         statement.close();
         conn.close();

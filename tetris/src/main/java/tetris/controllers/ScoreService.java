@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class ScoreService {
     private ScoreDao scoreDao;
+    private static final int USERNAME_LIMIT = 15;
 
     @Inject
     public ScoreService(ScoreDao scoreDao) {
@@ -23,6 +24,7 @@ public class ScoreService {
      * @param username username of the player
      */
     public void saveScore(int score, String username) {
+        username = username.substring(0, Math.min(USERNAME_LIMIT, username.length()));
         scoreDao.saveScore(new Score(score, username));
     }
 
