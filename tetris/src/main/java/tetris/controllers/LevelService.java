@@ -7,7 +7,7 @@ import tetris.models.DifficultyLevel;
  */
 public interface LevelService {
 
-    DifficultyLevel getLevel();
+    DifficultyLevel getDifficultyLevel();
 
-    void setLevel(DifficultyLevel level);
+    void setDifficultyLevel(DifficultyLevel level);
 }

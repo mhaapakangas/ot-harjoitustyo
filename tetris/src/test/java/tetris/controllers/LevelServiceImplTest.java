@@ -17,9 +17,9 @@ public class LevelServiceImplTest {
     public void canSetAndRetrieveLevel() {
         DifficultyLevel expected = DifficultyLevel.HARD;
 
-        Assert.assertEquals(DifficultyLevel.EASY, levelService.getLevel());
+        Assert.assertEquals(DifficultyLevel.EASY, levelService.getDifficultyLevel());
 
-        levelService.setLevel(expected);
-        Assert.assertEquals(expected, levelService.getLevel());
+        levelService.setDifficultyLevel(expected);
+        Assert.assertEquals(expected, levelService.getDifficultyLevel());
     }
 }

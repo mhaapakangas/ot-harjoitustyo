@@ -30,7 +30,7 @@ public class GameServiceTest {
         mockedLevelService = mock(LevelService.class);
 
         when(mockedShapeGenerator.getNewShape()).thenReturn(mockedShape);
-        when(mockedLevelService.getLevel()).thenReturn(DifficultyLevel.EASY);
+        when(mockedLevelService.getDifficultyLevel()).thenReturn(DifficultyLevel.EASY);
         gameService = new GameService(mockedGridService, mockedShapeGenerator, mockedLevelService);
     }
 

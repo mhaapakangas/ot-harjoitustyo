@@ -147,10 +147,10 @@ public class GameScene {
         TextField usernameField = new TextField();
         usernameField.setLayoutX(65);
         usernameField.setLayoutY(275);
-        Button saveScore = new Button("Save score");
-        saveScore.setLayoutX(108);
-        saveScore.setLayoutY(315);
-        saveScore.setOnAction(e -> {
+        Button saveScoreButton = new Button("Save score");
+        saveScoreButton.setLayoutX(108);
+        saveScoreButton.setLayoutY(315);
+        saveScoreButton.setOnAction(e -> {
             scoreService.saveScore(gameService.getScore(),
                 usernameField.getText().trim());
             sceneManager.setScene(AppScene.HIGH_SCORE_SCENE);
@@ -166,8 +166,8 @@ public class GameScene {
                 return usernameField.getText().trim().isEmpty();
             }
         };
-        saveScore.disableProperty().bind(binding);
+        saveScoreButton.disableProperty().bind(binding);
 
-        root.getChildren().addAll(usernameField, saveScore);
+        root.getChildren().addAll(usernameField, saveScoreButton);
     }
 }

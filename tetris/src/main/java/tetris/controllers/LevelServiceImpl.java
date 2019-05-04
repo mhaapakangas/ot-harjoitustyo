@@ -11,5 +11,5 @@ public class LevelServiceImpl implements LevelService {
 
     @Getter
     @Setter
-    private DifficultyLevel level = DifficultyLevel.EASY;
+    private DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
 }

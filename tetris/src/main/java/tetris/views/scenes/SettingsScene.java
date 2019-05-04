@@ -51,7 +51,7 @@ public class SettingsScene {
         buttonLayout.setSpacing(10);
         buttonLayout.setPadding(new Insets(0, 0, 0, 110));
 
-        switch (levelService.getLevel()) {
+        switch (levelService.getDifficultyLevel()) {
             case HARD:
                 hardButton.setSelected(true);
                 break;
@@ -67,7 +67,7 @@ public class SettingsScene {
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (difficultyLevels.getSelectedToggle() != null) {
                     DifficultyLevel newLevel = (DifficultyLevel) difficultyLevels.getSelectedToggle().getUserData();
-                    levelService.setLevel(newLevel);
+                    levelService.setDifficultyLevel(newLevel);
                 }
             }
         });

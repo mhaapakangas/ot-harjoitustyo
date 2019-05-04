@@ -26,7 +26,7 @@ public class GameService {
     public GameService(GridService gridService, ShapeGenerator shapeGenerator, LevelService levelService) {
         lastUpdate = System.currentTimeMillis();
         this.gridService = gridService;
-        this.level = levelService.getLevel().getLevel();
+        this.level = levelService.getDifficultyLevel().getLevel();
         this.shapeGenerator = shapeGenerator;
         currentShape = shapeGenerator.getNewShape();
     }
@@ -41,7 +41,7 @@ public class GameService {
      */
     public void update() {
         long currentTime = System.currentTimeMillis();
-        if (!gameOver && currentTime - lastUpdate > getUpdateInterval()) {
+        if (!gameOver && isUpdateNeeded(currentTime)) {
             if (currentShape.canMoveDown(gridService.getGrid())) {
                 currentShape.moveDown(gridService.getGrid());
             } else {
@@ -57,6 +57,10 @@ public class GameService {
 
             lastUpdate = currentTime;
         }
+    }
+
+    private boolean isUpdateNeeded(long currentTime) {
+        return currentTime - lastUpdate > getUpdateInterval();
     }
 
     private double getUpdateInterval() {
