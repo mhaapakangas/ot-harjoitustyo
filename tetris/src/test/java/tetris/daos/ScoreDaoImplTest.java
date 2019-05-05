@@ -30,7 +30,7 @@ public class ScoreDaoImplTest {
     }
 
     @Test
-    public void saveScoreToDatabase() throws SQLException {
+    public void testSaveScoreToDatabase() throws SQLException {
         int score = 9999;
         String username = "Bob";
 
@@ -47,7 +47,7 @@ public class ScoreDaoImplTest {
     }
 
     @Test
-    public void getHighScoresFromDatabase() throws SQLException {
+    public void testGetHighScoresFromDatabase() throws SQLException {
         int score = 9999;
         String username = "Bob";
         int score2 = 980;

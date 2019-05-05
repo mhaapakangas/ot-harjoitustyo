@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import tetris.models.Position;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static tetris.models.Constants.GRID_HEIGHT;
 import static tetris.models.Constants.GRID_WIDTH;
 
@@ -131,5 +130,43 @@ public class TShapeTest {
         
         shape.rotate(grid);
         assertArrayEquals(shape.rotations[0], shape.getOrientation());
+    }
+
+    @Test
+    public void testHashCodeAndEquals() {
+        Shape shape = new TShape(new Position(5, 0));
+        Shape shape2 = new TShape(new Position(5, 0));
+
+        assertTrue(shape.equals(shape2));
+        assertEquals(shape.hashCode(), shape2.hashCode());
+    }
+
+    @Test
+    public void notEqualWhenDifferentPosition() {
+        Shape shape = new TShape(new Position(5, 0));
+        Shape shape2 = new TShape(new Position(5, 1));
+        assertFalse(shape.equals(shape2));
+    }
+
+    @Test
+    public void nonEqualWhenDifferentPosition() {
+        Shape shape = new TShape(new Position(5, 0));
+        Shape shape2 = new TShape(new Position(5, 0));
+        shape2.rotate(grid);
+        assertFalse(shape.equals(shape2));
+    }
+
+    @Test
+    public void notEqualWhenDifferentShape() {
+        Shape shape = new TShape(new Position(5, 0));
+        Shape shape2 = new ZShape(new Position(5, 1));
+        assertFalse(shape.equals(shape2));
+    }
+
+    @Test
+    public void nonEqualWhenDifferentType() {
+        Shape shape = new TShape(new Position(5, 0));
+        Object o = new Object();
+        assertFalse(shape.equals(o));
     }
 }
