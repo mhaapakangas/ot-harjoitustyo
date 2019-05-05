@@ -1,7 +1,8 @@
 # Ot-harjoitustyö
 ## Tetris-peli
 Tetris on geometrinen ongelmanratkaisupeli, jossa pelaaja asettelee erimuotoisia, putovia palikoita ruudukossa.
-Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
+Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä. Pistetulokset tallennetaan, ja sovelluksesta
+näkee parhaat pisteet ja ne saavuttaneet pelaajat.
 
 ## Dokumentaatio
 [Käyttöohje](/documentation/kayttoohje.md)
@@ -10,6 +11,8 @@ Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 [Arkkitehtuurikuvaus](/documentation/arkkitehtuuri.md)
 
+[Testausdokumentti](/documentation/testaus.md)
+
 [Työaikakirjanpito](/documentation/tuntikirjanpito.md)
 
 ## Releaset
@@ -17,11 +20,13 @@ Tavoitteena on kerätä pisteitä muodostamalla palikoista täysiä rivejä.
 
 [Viikko 6](https://github.com/mhaapakangas/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/mhaapakangas/ot-harjoitustyo/releases/tag/viikko7)
+
 ## Komentorivitoiminnot
 ### Ohjelman suorittaminen
 Ohjelman voi suorittaa komentoriviltä komennolla:
 ```
-mvn compile exec:java -Dexec.mainClass=tetris.views.MenuView
+mvn compile exec:java -Dexec.mainClass=tetris.views.Tetris
 ```
 
 ### Jar-tiedoston luominen
@@ -30,7 +35,7 @@ Ohjelmasta voi luoda jar-tiedoston target-hakemistoon komennolla:
 mvn package
 ```
 
-Ohjelman voi suorittaa komennolla:
+Luodun ohjelman voi suorittaa komennolla:
 ```
 java -jar target/Tetris-1.0-SNAPSHOT.jar
 ```
