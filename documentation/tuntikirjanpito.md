@@ -18,4 +18,8 @@
 | 24.4. | 3 | Sovelluslogiikka palikan pudotukselle, pisteiden laskulle ja vaikeustasoille |
 | 25.4. | 4 | Yksikkötestausta, java docin lisäys ja dokumentaation päivitys |
 | 26.4 | 2 | Uusi release ja dokumentaation päivitys |
-| Yht.  | 35  |  |
+| 2.5 | 4 | Sovelluslogiikka vaikeustason valinnalle, ulkoasun muokkausta ja yksikkötestausta |
+| 3.5 | 3 | Ulkoasun muokkausta ja yksikkötestausta |
+| 4.5 | 6 | Javadocin täydennys, pieniä korjauksia ja dokumentaation päivitystä |
+| 5.5 | 6 | Testausdokumentti ja muun dokumentaation päivitystä |
+| Yht.  | 54 |  |
