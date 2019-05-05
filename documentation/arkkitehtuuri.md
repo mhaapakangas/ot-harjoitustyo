@@ -17,7 +17,7 @@ konstruktoria kutsuttaessa Googlen [Guice](https://github.com/google/guice/blob/
 
 ### Käyttöliittymä
 
-Käyttöliittymä sisältää neljä näkymää: menun ([MenuScene](https://github.com/mhaapakangas/ot-harjoitustyo/blob/master/tetris/src/main/java/tetris/views/scenes/MenuScene.java)),
+Käyttöliittymä sisältää neljä näkymää: päävalikon ([MenuScene](https://github.com/mhaapakangas/ot-harjoitustyo/blob/master/tetris/src/main/java/tetris/views/scenes/MenuScene.java)),
 pistetilaston ([HighScoreScene](https://github.com/mhaapakangas/ot-harjoitustyo/blob/master/tetris/src/main/java/tetris/views/scenes/HighScoreScene.java)),
 pelinäkymän ([GameScene](https://github.com/mhaapakangas/ot-harjoitustyo/blob/master/tetris/src/main/java/tetris/views/scenes/GameScene.java))
 ja asetukset ([SettingsScene](https://github.com/mhaapakangas/ot-harjoitustyo/blob/master/tetris/src/main/java/tetris/views/scenes/SettingsScene.java)).
