@@ -36,6 +36,18 @@ public class ScoreServiceTest {
     }
 
     @Test
+    public void saveScoreWithTooLongUsername() {
+        int score = 9999;
+        String username = "1234567890123456";
+        String allowedUsername = "123456789012345";
+
+        scoreService.saveScore(score, username);
+
+        Score expected = new Score(score, allowedUsername);
+        verify(mockedScoreDao).saveScore(expected);
+    }
+
+    @Test
     public void getHighScoresFromDatabase() {
         List<Score> scores = Arrays.asList(new Score(9999, "Bob"), new Score(9998, "Bab"));
 
