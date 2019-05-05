@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import tetris.controllers.LevelService;
+import tetris.controllers.ScoreService;
 import tetris.models.DifficultyLevel;
 
 /**
@@ -23,6 +24,13 @@ public class SettingsScene {
     @Getter
     private Scene scene;
 
+    /**
+     * Constructor.
+     * Creates the {@link Scene} for selecting game settings.
+     *
+     * @param sceneManager {@link SceneManager} for handling changing scenes
+     * @param levelService {@link ScoreService} for handling the selected difficulty level
+     */
     @Inject
     public SettingsScene(SceneManager sceneManager, LevelService levelService) {
         Text title = new Text();

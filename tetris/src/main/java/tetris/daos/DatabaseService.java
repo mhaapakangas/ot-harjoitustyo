@@ -20,6 +20,7 @@ public class DatabaseService {
      * if it doesn't exist yet.
      *
      * @throws SQLException if creating a connection or table fails
+     * @throws ClassNotFoundException if getting database driver fails
      */
     public void init() throws ClassNotFoundException, SQLException {
         Class.forName(JDBC_DRIVER);

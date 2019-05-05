@@ -15,13 +15,18 @@ public class ScoreDaoImpl implements ScoreDao {
     private static final Logger LOGGER = Logger.getLogger(ScoreDaoImpl.class.getName());
     private DatabaseService service;
 
+    /**
+     * Constructor.
+     *
+     * @param service class for handling connecting to the database
+     */
     @Inject
     public ScoreDaoImpl(DatabaseService service) {
         this.service = service;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void saveScore(Score score) {

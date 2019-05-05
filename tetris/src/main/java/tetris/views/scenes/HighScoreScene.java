@@ -26,6 +26,13 @@ public class HighScoreScene {
     @Getter
     private Scene scene;
 
+    /**
+     * Constructor.
+     * Creates the {@link Scene} for displaying high scores.
+     *
+     * @param sceneManager {@link SceneManager} for handling changing scenes
+     * @param scoreService {@link ScoreService} for reading high scores
+     */
     @Inject
     public HighScoreScene(ScoreService scoreService, SceneManager sceneManager) {
         Text title = new Text();

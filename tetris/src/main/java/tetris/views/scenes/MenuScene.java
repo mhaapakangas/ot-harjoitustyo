@@ -15,6 +15,12 @@ public class MenuScene {
     @Getter
     private Scene scene;
 
+    /**
+     * Constructor.
+     * Creates the {@link Scene} for the main menu.
+     *
+     * @param sceneManager {@link SceneManager} for handling changing scenes
+     */
     @Inject
     public MenuScene(SceneManager sceneManager) {
         Text title = new Text();

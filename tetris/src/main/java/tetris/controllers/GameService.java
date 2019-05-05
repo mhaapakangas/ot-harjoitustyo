@@ -22,6 +22,15 @@ public class GameService {
     private int level;
     private int linesClearedAtCurrentLevel = 0;
 
+
+    /**
+     * Constructor.
+     * Initializes a new game. Sets the starting game level and creates a new shape.
+     *
+     * @param gridService {@link GridService} for handling the game grid
+     * @param shapeGenerator {@link ShapeGenerator} for creating shapes
+     * @param levelService {@link LevelService} for determining the difficulty level
+     */
     @Inject
     public GameService(GridService gridService, ShapeGenerator shapeGenerator, LevelService levelService) {
         lastUpdate = System.currentTimeMillis();
@@ -35,8 +44,10 @@ public class GameService {
      * This method updates the game state if game is ongoing and
      * game update rate is reached.
      *
-     * It moves the current shape down if possible. Otherwise it
-     * clears full rows, updates the score and spawns a new shape.
+     * It moves the current shape down if possible. Otherwise the method clears full rows,
+     * updates the score and game level, and spawns a new shape. After creating a new shape,
+     * it checks if it collides with the game grid. If the new shape collides, the gameOver
+     * field is set to true.
      *
      */
     public void update() {

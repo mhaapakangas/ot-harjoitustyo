@@ -5,12 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 
-@Getter
-@EqualsAndHashCode
-@AllArgsConstructor
 /**
  * Class representing a position in the game grid.
  */
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
 public class Position {
     private int posX;
     private int posY;

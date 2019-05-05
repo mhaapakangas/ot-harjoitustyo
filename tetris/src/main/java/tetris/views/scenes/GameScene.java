@@ -35,6 +35,17 @@ public class GameScene {
     private static final int GAME_OVER_WIDTH = 200;
     private static final int GAME_OVER_HEIGHT = 160;
 
+    /**
+     * Constructor.
+     * Creates the {@link Scene} for playing the game. {@link Canvas} is used for
+     * displaying the game, or the game over screen when a game ends. {@link AnimationTimer}
+     * is responsible of updating and drawing the game, and {@link javafx.event.EventHandler}
+     * handles commands from the player.
+     *
+     * @param sceneManager {@link SceneManager} for handling changing scenes
+     * @param scoreService {@link ScoreService} for storing new scores
+     * @param gameService {@link GameService} for handling game logic
+     */
     @Inject
     public GameScene(SceneManager sceneManager, ScoreService scoreService, GameService gameService) {
         this.gameService = gameService;
