@@ -6,11 +6,13 @@ import tetris.models.Score;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This class is responsible for reading and writing scores to database.
  */
 public class ScoreDaoImpl implements ScoreDao {
+    private static final Logger LOGGER = Logger.getLogger(ScoreDaoImpl.class.getName());
     private DatabaseService service;
 
     @Inject
@@ -32,7 +34,7 @@ public class ScoreDaoImpl implements ScoreDao {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.warning("Error saving score to database.");
         }
     }
 
@@ -57,7 +59,7 @@ public class ScoreDaoImpl implements ScoreDao {
 
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.warning("Error reading scores from database.");
         }
 
         return scores;

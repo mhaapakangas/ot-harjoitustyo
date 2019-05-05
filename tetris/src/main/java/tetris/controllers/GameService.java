@@ -54,7 +54,6 @@ public class GameService {
                     gameOver = true;
                 }
             }
-
             lastUpdate = currentTime;
         }
     }

@@ -25,6 +25,9 @@ public class Tetris extends Application {
     /**
      * Creates guice injector for dependency injection and initializes
      * the database.
+     *
+     * @throws SQLException if initializing database fails
+     * @throws ClassNotFoundException if getting database driver fails
      */
     @Override
     public void init() throws SQLException, ClassNotFoundException {
